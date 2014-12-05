@@ -44,6 +44,7 @@ img {
 }
 #wochen:hover{
 	background-color: #E9E9E9;
+
 }
 
 #uebersicht{
@@ -56,6 +57,7 @@ img {
 	-moz-user-select: none;
 	cursor: default;
 	height: 20%;
+	border-bottom-width: 4px;
 }
 #uebersicht:hover{
 	background-color: #E9E9E9;
