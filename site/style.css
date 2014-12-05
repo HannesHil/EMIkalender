@@ -1,0 +1,28 @@
+body{
+	background-color: #F1F1F1;
+}
+
+.ganzeSeite{
+	margin: 0px 0px 0px 0px;
+width: 100%;
+height: 100%
+}
+.logo{
+ 	margin: 0px 0px 0px 0px;
+	width: 20%;
+	height: 10%;
+	border: 1px solid #000000;
+}
+.auswahl{
+	width: 20%;
+	height: 90%;
+	border: 1px solid #000000;
+	
+}
+#akronym{
+	font-size: 50px;
+	font-family: "Franklin Gothic Book";
+	text-align: center;
+	margin-top: 20px;
+	font-weight: bold;
+}
