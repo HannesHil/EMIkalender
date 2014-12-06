@@ -63,13 +63,14 @@ img {
 	background-color: #E9E9E9;
 }*/
 #ansichtsContainer{
+	text-align:center;
 	border: 4px solid #000000;
-	;
+	
 	margin-left:20.2%;
-	right:auto;
+	
 	margin-top:0.1%;
 	width: 60%;
-	height:86.6%;
+	height:86.4%;
 	border-left-width: 0px;
 	border-bottom-width: 2px;	
 }
