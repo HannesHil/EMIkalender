@@ -1,57 +1,40 @@
 /**
- * @author Maximilian
+ * @author xxxMaximilianxxx
  */
-	var x = document.getElementById("monat");
-	var y = document.getElementById("wochen");
-	var z = document.getElementById("uebersicht");
-    var xactive=true;
-    var yactive=true;
-    var zactive=true;
-function activatedMonat() {
-var x = document.getElementById("monat");
-	var y = document.getElementById("wochen");
-	var z = document.getElementById("uebersicht");
+ 
+ 
 	
-	x.style.backgroundColor = "#E9E9E9"; xactive = false;
-	y.style.backgroundColor = "#FFFFFF"; yactive = true;
-	z.style.backgroundColor = "#FFFFFF"; zactive = true;
-}
+ var objekte = new Array();
+	var x = document.getElementById("monat");
+	var y = document.getElementById("wochen");	
+	var z = document.getElementById("uebersicht");  
+	var xxx = document.getElementById("ViewPane");
 
-function activatedWoche() {
-var x = document.getElementById("monat");
-	var y = document.getElementById("wochen");
-	var z = document.getElementById("uebersicht");
-
-	x.style.backgroundColor = "#FFFFFF"; xactive=true;
-	y.style.backgroundColor = "#E9E9E9"; yactive=false;
-	z.style.backgroundColor = "#FFFFFF"; zactive=true;
-}
-function activatedUebersicht(){
-var x = document.getElementById("monat");
-	var y = document.getElementById("wochen");
-	var z = document.getElementById("uebersicht");
-
-	x.style.backgroundColor = "#FFFFFF"; xactive=true;
-	y.style.backgroundColor = "#FFFFFF"; yactive=true;
-	z.style.backgroundColor = "#E9E9E9"; zactive=false;
+		objekte[0] = x;
+		objekte[1] = y;
+		objekte[2] = z;
+	
+function activateSelektor(a) {	
+	for	(i = 0; i < objekte.length; i++) {
+		if(objekte[i].id == a.id){
+		objekte[i].className = 'selektor_choosen';
+		var htmldatei = '' + a.id + '.html';
+		xxx.src  = htmldatei;
+	
+		}else{
+		objekte[i].className = 'selektor_unchoosen';
+		}	
+	}	
 }
 
 function sickeFaerbung(a){
-	
-	a.style.backgroundColor="E9E9E9";
+
+	if(a.className != 'selektor_choosen')
+	a.className = 'selektor_hoover';	
 }
-function sickeEntfaerbungx (a) {
-  if (xactive)
-  a.style.backgroundColor="#FFFFFF";
-  
+
+function sickeEntfaerbung (a) {
+	if(a.className == 'selektor_hoover')
+	a.className = 'selektor_unchoosen';  
 }
-function sickeEntfaerbungy (a) {
-  if (yactive)
-  a.style.backgroundColor="#FFFFFF";
-  
-}
-function sickeEntfaerbungz (a) {
-  if (zactive)
-  a.style.backgroundColor="#FFFFFF";
-  
-}
+
