@@ -1,8 +1,7 @@
 <!DOCTYPE >
 <html>
 	<head>
-		<link href="https://fonts.googleapis.com/css?family=Muli:300italic,300,400italic,400" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="tschawa.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Muli:300italic,300,400italic,400" rel="stylesheet" type="text/css">		
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>DDkalender</title>
 
@@ -12,15 +11,15 @@
 			<img src="source/logo_blau_2133x626.png">
 		</div>
 		<div id="selektor">
-			<div id="monat" onclick="activatedMonat()" onmouseover="sickeFaerbung(this)" onmouseout="sickeEntfaerbungx(this)"><p>MONATE</p></div>
-			<div id="wochen" onclick="activatedWoche()" onmouseover="sickeFaerbung(this)" onmouseout="sickeEntfaerbungy(this)"><p>TAGE</p></div>
-			<div id="uebersicht" onclick="activatedUebersicht()" onmouseover="sickeFaerbung(this)" onmouseout="sickeEntfaerbungz(this)"><p>&Uuml;BERSICHT</p></div>
+			<div id="monat" class="selektor_normal" onclick="activateSelektor(this)" onmouseover="sickeFaerbung(this)" onmouseout="sickeEntfaerbung(this)"><p>MONAT</p></div>			
+			<div id="wochen" class="selektor_normal" onclick="activateSelektor(this)" onmouseover="sickeFaerbung(this)" onmouseout="sickeEntfaerbung(this)"><p>TAGE</p></div>
+			<div id="uebersicht" class="selektor_normal" onclick="activateSelektor(this)" onmouseover="sickeFaerbung(this)" onmouseout="sickeEntfaerbung(this)"><p>&Uuml;BERSICHT</p></div>
 			
 		</div>
 		<div id="ansichtsContainer">
-			<iframe src="Monat.html" width="100%" height="100%"></iframe>
+			<iframe  id="ViewPane" src="monat.html" width="100%" height="100%"></iframe>
 		</div>
-
+	<script type="text/javascript" src="tschawa.js"></script>
 	</body>
 
 </html>
