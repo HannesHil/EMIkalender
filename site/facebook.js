@@ -131,15 +131,15 @@
 	function maleZelle(){
 		var hilfsdatum = new Date(datum.getTime());
 		hilfsdatum.setDate(0);
-		var a = hilfsdatum.getDay();
+		var ersterTag = hilfsdatum.getDay();
 		var hilf = 0;
 		var hilf2 = 0;
-		var MaxTage = getMaxTageimMonat(datum.getFullYear(),datum.getMonth());		
+		var MaxTageMonat = getMaxTageimMonat(datum.getFullYear(),datum.getMonth());		
 		for (var i = 1; i < monattabelle.rows.length; i++){   			  
 			for( var j = 0; j < monattabelle.rows.item(i).cells.length; j++){				
 				var Zelle = monattabelle.rows.item(i).cells.item(j);
-				Zelle.innerHTML = "2";	
-				if(hilf >= a && hilf2 < MaxTage){
+				Zelle.innerHTML = "2";				
+				if(hilf >= ersterTag && hilf2 < MaxTageMonat){
 					hilf2++;
 					Zelle.innerHTML =	hilf2;
 				}else{
