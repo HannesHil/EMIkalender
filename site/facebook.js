@@ -38,7 +38,7 @@ function New() {
 }
 
 function start() {
-	//ladeJSON(); 
+	ladeJSON(); 
 	console.log("Bild");
 	datum = new Date();
 	monattabelle = document.getElementById("monate");

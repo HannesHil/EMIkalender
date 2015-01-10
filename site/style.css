@@ -3,6 +3,7 @@ body {
 	-moz-user-select:none;
 	user-select: none; 
     -khtml-user-select: none; 
+    
 }
 #tfheader{
 		background-color:#FFFFFF;
@@ -119,7 +120,8 @@ img {
 	width: 60%;
 	height:86.4%;
 	margin:auto;
-	text-align: center;	
+	text-align: center;
+	cursor:default;	
 }
 
 table,th,td{	
@@ -127,7 +129,8 @@ table,th,td{
 	-moz-user-select:none;
 	user-select: none; 
     -khtml-user-select: none; 
-	text-align: center;  
+	text-align: center;
+	cursor: default;  
 }
 
 
