@@ -1,10 +1,6 @@
-		
-
 	var datum;
 	var monattabelle;
 	var monatsanzeige;
-
-
 
 	function weiter(a) {
 		console.log("Test");
@@ -28,18 +24,117 @@
 		New();				
 	}
 
-
 	function New(){
-		monatsanzeige.innerHTML = (datum.getMonth()+1) +" "+ datum.getFullYear();	
-		
+		monatsanzeige.innerHTML = getMonthtoString(datum.getMonth()) +" "+ datum.getFullYear();		
+		var hilfsdatum = datum;
+		hilfsdatum.setDate(0);
+		var a = hilfsdatum.getDay();
+		var hilf = 0;
+		var hilf2 = 0;
+		var MaxTage = getMaxTageimMonat(datum.getFullYear,datum.getMonth);
+		console.log(MaxTage);
+		for (var i = 1; i < monattabelle.rows.length; i++){   			  
+			for( var j = 0; j < monattabelle.rows.item(i).cells.length; j++){				
+				var Zelle = monattabelle.rows.item(i).cells.item(j);
+				Zelle.innerHTML = "2";	
+				if(hilf >= a && hilf2 < MaxTage){
+					hilf2++;
+					Zelle.innerHTML =	hilf2;
+				}						
+				hilf++;	
+			}
+		}
+	
 	}
 
 	function start(){
 		datum = new Date();
 		monattabelle = document.getElementById("monate");
 		monatsanzeige = document.getElementById("monatsanzeige");		
-		New();
+		New();		
 	}
 
+	function getDayToSting(a){
+		var day;
+		switch (a) {
 
+			case 0:
+			day = "Sonntag";
+			break;
+		case 1:
+			day = "Montag";
+			break;
+		case 2:
+			day = "Dienstag";
+			break;
+		case 3:
+			day = "Mittwoch";
+			break;
+		case 4:
+			day = "Donnerstag";
+			break;
+		case 5:
+			day = "Freitag";
+			break;
+		case 6:
+			day = "Samstag";
+			break;
+		}
+		return day;
+	}
+
+	function getMonthtoString(a){
+		var month;
+		switch (a) {
+			case 0:
+			month = "Januar";
+			break;
+		case 1:
+			month = "Februar";
+			break;
+		case 2:
+			month = "M&auml;rz";
+			break;
+		case 3:
+			month = "April";
+			break;
+		case 4:
+			month = "Mai";
+			break;
+		case 5:
+			month = "Juni";
+			break;
+		case 6:
+			month = "Juli";
+			break;
+		case 7:
+			month = "August";
+			break;
+		case 8:
+			month = "September";
+			break;
+		case 9:
+			month = "Oktober";
+			break;
+		case 10:
+			month = "November";
+			break;
+		case 11:
+			month = "Dezember"
+			break;
+		}
+		return month;
+	}
+
+	function getMaxTageimMonat(Jahr,Monat){
+		var Datum = new Date;
+		Datum.setFullYear(Jahr);
+		Datum.setMonth(Monat);			
+		for(var i = 25; i < 50;i++){
+			Datum.setDate(i);			
+			if(Monat != Datum.getMonth()){
+				return i-1;
+			}
+		}		
+	}
 
