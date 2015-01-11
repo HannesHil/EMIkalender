@@ -118,7 +118,7 @@ table, th, td {
 #mitEvent {
     background-color: red;
     font-style: oblique;
-    cursor: progress;
+    cursor: pointer;
 }
 
 #nichtimMonat {
