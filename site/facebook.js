@@ -153,9 +153,10 @@ function maleZellen() {
 			/*		alert(Text); */
 			Tip(Text);
 				}
-			Zelle.onmouseout = UnTip();
+			
 			
 			};
+			Zelle.onmouseout = UnTip();
 			if (hilf >= a && hilf2 < MaxTage) {
 				hilf2++;
 				Zelle.innerHTML = hilf2;
