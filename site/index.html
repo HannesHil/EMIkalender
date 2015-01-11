@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link href="https://fonts.googleapis.com/css?family=Muli:300italic,300,400italic,400" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script type="text/javascript" src="facebook.js"></script>
-		<title>DDkalender</title>
-	</head>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Muli:300italic,300,400italic,400" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="facebook.js"></script>
+        <title>DDkalender</title>
+    </head>
 
-	<body onload="onloadFunktion()">
-		<script type="text/javascript" src="wz_tooltip.js"></script>
-		<div id="logo">
-			<img src="source/logo.png" alt="Logo">
-		</div>
+    <body onload="onloadFunktion()">
+        <script type="text/javascript" src="wz_tooltip.js"></script>
+        <div id="logo">
+            <img src="source/logo.png" alt="Logo">
+        </div>
 
-		<div id="tfheader">
-			<form id="tfnewsearch" >
-				<input type="text" class="tftextinput" id="q" size="21" maxlength="120" placeholder="DD.MM.JJJJ">
-				<input  onclick="search();" type="button" value="suchen" class="tfbutton">
-			</form>
-			<div class="tfclear"></div>
-		</div>
-		<div id="ansichtsContainer">
-			<div style="float:left; width:150px" onclick="datumsaenderungFeil(0)" class="hinundher">
+        <div id="tfheader">
+            <form id="tfnewsearch" >
+                <input type="text" class="tftextinput" id="q" size="21" maxlength="120" placeholder="DD.MM.JJJJ">
+                <input  onclick="search();" type="button" value="suchen" class="tfbutton">
+            </form>
+            <div class="tfclear"></div>
+        </div>
+        <div id="ansichtsContainer">
+            <div style="float:left; width:150px" onclick="datumsaenderungFeil(0)" class="hinundher">
 
-				&laquo;
-			</div>
-			<a id="monatsanzeige" >start</a>
-			<div style="float:right; width:150px" onclick="datumsaenderungFeil(1)" class="hinundher">
-				&raquo;
-			</div>
-			<table id="monate" >
-				<tr>
-					<td>Mon</td><td>Die</td><td>Mit</td><td>Don</td><td>Fre</td><td>Sam</td><td>Son</td>
+                &laquo;
+            </div>
+            <a id="monatsanzeige" onclick="heute()" >start</a>
+            <div style="float:right; width:150px" onclick="datumsaenderungFeil(1)" class="hinundher">
+                &raquo;
+            </div>
+            <table id="monate" >
+                <tr>
+                    <td>Mon</td><td>Die</td><td>Mit</td><td>Don</td><td>Fre</td><td>Sam</td><td>Son</td>
 
-				</tr>
-				<tr>
-					<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-				</tr>
-				<tr>
-					<td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
-				</tr>
-				<tr>
-					<td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td>
-				</tr>
-				<tr>
-					<td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
-				</tr>
-				<tr>
-					<td>29</td><td>30</td><td>31</td><td>-</td><td>-</td><td>-</td><td>-</td>
-				</tr>
-				<tr>
-					<td>29</td><td>30</td><td>31</td><td>-</td><td>-</td><td>-</td><td>-</td>
-				</tr>
-			</table>
-		</div>
-	</body>
+                </tr>
+                <tr>
+                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                </tr>
+                <tr>
+                    <td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
+                </tr>
+                <tr>
+                    <td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td>
+                </tr>
+                <tr>
+                    <td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
+                </tr>
+                <tr>
+                    <td>29</td><td>30</td><td>31</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                </tr>
+                <tr>
+                    <td>29</td><td>30</td><td>31</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                </tr>
+            </table>
+        </div>
+    </body>
 </html>
