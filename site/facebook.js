@@ -29,7 +29,10 @@ function datumsaenderungFeil(a) {
 }
 
 function neuMalennachDatumsaenderung() {
+<<<<<<< HEAD
     console.log("Test2");
+=======
+>>>>>>> 03517b8f30d4b13a425ad1a24cb5af73ac28060d
 
     monatsanzeige.innerHTML = getMonthtoString(datum.getMonth()) + " " + datum.getFullYear();
     maleZellen();
@@ -37,8 +40,13 @@ function neuMalennachDatumsaenderung() {
 }
 
 function onloadFunktion() {
+<<<<<<< HEAD
     ladeJSON();
     console.log("Bild");
+=======
+    console.log("StartFunktion");
+    ladeJSON();
+>>>>>>> 03517b8f30d4b13a425ad1a24cb5af73ac28060d
     datum = new Date();
     monattabelle = document.getElementById("monate");
     monatsanzeige = document.getElementById("monatsanzeige");
@@ -216,11 +224,19 @@ function fade(element) {
 }
 
 function ladeJSON() {
+<<<<<<< HEAD
     console.log("Test");
+=======
+    console.log("LadeDatei");
+>>>>>>> 03517b8f30d4b13a425ad1a24cb5af73ac28060d
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var myArr = JSON.parse(xmlhttp.responseText);
             Events = myArr;
+<<<<<<< HEAD
+=======
+            console.log("Fertig Geladen");
+>>>>>>> 03517b8f30d4b13a425ad1a24cb5af73ac28060d
             maleZellen();
         }
     };
