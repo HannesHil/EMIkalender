@@ -142,12 +142,12 @@ function maleZellen() {
 			var Zelle = monattabelle.rows.item(i).cells.item(j);
 			Zelle.anzahlEvents = 0;
 			Zelle.onmouseover = function() {
-				
+			
 				if (this.anzahlEvents !== 0) {
 					var Text = "Es gibt " + this.anzahlEvents + " an diesm Tag\n";
 					
 					for (var i = 0; i < this.anzahlEvents; i++) {
-						Text += '"Event " + (i + 1) + " Wo? " + this.eventss[i].ort + " \n"';
+						Text += 'Event ' + (i + 1) + ' Wo? ' + this.eventss[i].ort + ' \n';
 					}
 					
 			/*		alert(Text); */
@@ -156,7 +156,8 @@ function maleZellen() {
 			
 			
 			};
-			Zelle.onmouseout = UnTip();
+			
+			Zelle.onmouseout = UnTip;
 			if (hilf >= a && hilf2 < MaxTage) {
 				hilf2++;
 				Zelle.innerHTML = hilf2;
