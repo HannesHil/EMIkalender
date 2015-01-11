@@ -1,184 +1,189 @@
-#haupt{
-	width:60%;
-	height:160px;
-	
-	margin:auto;
+#haupt {
+	width: 60%;
+	height: 150px;
+	margin: auto;
 	margin-bottom: 3px;
-	}
+}
 
 body {
-    background-color: #FFFFFF;
-    -moz-user-select:none;
-    user-select: none; 
-    -khtml-user-select: none; 
+	background-color: #FFFFFF;
+	-moz-user-select: none;
+	user-select: none;
+	-khtml-user-select: none;
 }
 
-#tfheader{
-    background-color:#FFFFFF;
-
+#tfheader {
+	background-color: #FFFFFF;
 }
 
-#tfnewsearch{
-    float:right;
-    padding:20px;
+#tfnewsearch {
+	float: right;
+	padding: 20px;
 }
 
-#search{
-	position:relativ;
+#search {
+	float: right;
 	top: 0px;
-	right:0px;
-	}
+	right: 0px;
+}
 
-.tftextinput{
-    margin: 0;
-    padding: 5px 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
-    border:1px solid black;
-    border-top-left-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-   	
+.tftextinput {
+	margin: 0;
+	padding: 5px 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	border: 1px solid black;
+	border-top-left-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
 }
 
 .tfbutton {
-    margin: 0;
-    padding: 5px 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    border: solid 1px #555555; 
-    background: #0095cd;
-    background: -webkit-gradient(linear, left top, left bottom, from(#d2d4dc), to(#777777));
-    background: -moz-linear-gradient(top,  #00adee,  #0078a5);
-    border-top-right-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
+	margin: 0;
+	padding: 5px 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	border: solid 1px #555555;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#d2d4dc), to(#777777));
+	background: -moz-linear-gradient(top,  #d2d4dc,  #777777);
+	border-top-right-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
 }
 
 .tfbutton:hover {
-    text-decoration: none;
-    background: #333333;
-    background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#333333));
-    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	text-decoration: none;
+	background: #333333;
+	background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#333333));
+	background: -moz-linear-gradient(top,  #999999,  #333333);
 }
 
 /* Fixes submit button height problem in Firefox */
 .tfbutton::-moz-focus-inner {
-    border: 0;
+	border: 0;
 }
 
-.tfclear{
-    clear:both;
+.tfclear {
+	clear: both;
 }
 
 #logo {
-	position: realtiv;
+	float: left;
 	left: 0px;
 	top: 0px;
-    width: 300px;
-    height: 87px;
+	width: 300px;
+	height: 87px;
 }
 
 img {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #selektor {
-    float:left;	
-    border: 2px solid #000000;
-    height: 85%;
-    width: 19.8%;
+	float: left;
+	border: 2px solid #000000;
+	height: 85%;
+	width: 19.8%;
 }
 
-#ansichtsContainer{
-    text-align:center;
-    font-size: 30px;
-    border: 2px solid #000000;
-    font-family: Arial, Helvetica, sans-serif;		
-    width: 60%;
-    height:86.4%;
-    margin:auto;
-  
+#ansichtsContainer {
+	text-align: center;
+	font-size: 30px;
+	border: 2px solid #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 60%;
+	height: 86.4%;
+	margin: auto;
 }
 
-table,th,td{	
-    font-size: 30px;	
-    -moz-user-select:none;
-    user-select: none; 
-    -khtml-user-select: none; 
-    text-align: center;  
+table, th, td {
+	font-size: 30px;
+	-moz-user-select: none;
+	user-select: none;
+	-khtml-user-select: none;
+	text-align: center;
 	cursor: default;
 }
 
-#ohneEvent{
-    background-color : yellow;
+#ohneEvent {
+	background-color: yellow;
 }
 
-#mitEvent{
-    background-color: red;
-    font-style: oblique;
+#mitEvent {
+	background-color: red;
+	font-style: oblique;
 }
 
-#nichtimMonat{
-    background-color: #A5BEBE;
+#nichtimMonat {
+	background-color: #A5BEBE;
 }
 
-#monate{
-    width: 100%;
-    height:  100%;
+#monate {
+	width: 100%;
+	height: 100%;
 }
 
 .blink {
-    animation-duration: 1s;
-    animation-name: blink;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+	animation-duration: 1s;
+	animation-name: blink;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
 }
 @keyframes blink {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+from {
+	opacity: 1;
+}
+to {
+	opacity: 0;
+}
 }
 
-.hinundher{
-	cursor:pointer;
+.hinundher {
+	cursor: pointer;
 }
 
-#monatsanzeige{
+#monatsanzeige {
 	cursor: default;
-	
+}
+#reiter {
+
+	float: left;
+	align: center;
+	width: 100%;
 }
 
-  ul#Navigation {
-    margin: 0; padding: 0.8em;
-    text-align: center;
-   /* border: 1px solid black;*/
-    background-color: white;
-  }
-  ul#Navigation li {
-    list-style: none;
-    display: inline;
-    margin: 0.4em; padding: 0;
-  }
+ul#Navigation {
+	margin: 0;
+	padding: 0.8em;
+	text-align: center;
+	/* border: 1px solid black;*/
+	background-color: white;
+}
+ul#Navigation li {
+	list-style: none;
+	display: inline;
+	margin: 0.4em;
+	padding: 0;
+}
 
-  ul#Navigation a, ul#Navigation span {
-    padding: 0.2em 1em;
-    text-decoration: none; font-weight: bold;
-    border: 1px solid black;
-    border-left-color: white; border-top-color: white;
-    color: maroon; background-color: #ccc;
-  }
-  ul#Navigation a:hover, ul#Navigation span {
-    border-color: white;
-    border-left-color: black; border-top-color: black;
-    color: white; background-color: gray;
-  }
+ul#Navigation a, ul#Navigation span {
+	padding: 0.2em 1em;
+	text-decoration: none;
+	font-weight: bold;
+	border: 1px solid black;
+	border-radius: 10px;
+	color: black;
+	background-color: #ccc;
+}
+ul#Navigation a:hover, ul#Navigation span {
+	border-color: white;
+	color: white;
+	background-color: #afafaf;
+}
 

@@ -284,6 +284,7 @@ function search(SuchText) {
         datum = new Date(dt.getTime());
     } else {
         Filter = "all";
+        console.log("test");
         if (contains(VeranstaltungsTypen, SuchText)) {
             Filter = SuchText;
         }
