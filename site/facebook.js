@@ -8,6 +8,7 @@ var suchTextFeld;
 var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
 var VeranstaltungsTypen = new Array("Musik", "Komoedie", "Jugendveranstaltungen", "Messe", "Sport", "Oper");
 var Filter = "all";
+var ModulesFenster = document.getElementById("Test");
 
 function datumsaenderungFeil(a) {
     if (a === 0) {
@@ -47,6 +48,7 @@ function onloadFunktion() {
     monattabelle = document.getElementById("monate");
     monatsanzeige = document.getElementById("monatsanzeige");
     suchTextFeld = document.getElementById("q");
+    ModulesFenster = document.getElementById("ModularFenster");
     suchTextFeld.value = "";
     neuMalennachDatumsaenderung();
 
@@ -157,14 +159,17 @@ function maleZellen() {
                         s = "s";
                     }
                     var Text = "Es gibt " + this.anzahlEvents + " Event" + s + " an diesem Tag.\n";
-//                    for (var i = 0; i < this.anzahlEvents; i++) {
-//                        Text += "Event " + (i + 1) + " Wo? " + this.eventss[i].ort + " \n";
-//                    }
+//                    
                     Tip(Text);
                 }
             };
             Zelle.onmouseout = function () {
                 UnTip();
+            };
+            Zelle.onclick = function () {
+                if (this.anzahlEvents !== 0) {
+                    onclick(this);
+                }
             };
             if (hilf >= a && hilf2 < MaxTage) {
                 hilf2++;
@@ -266,8 +271,12 @@ function ladeJSON() {
     xmlhttp.send();
 }
 
-function search() {
+function searchButton() {
     var SuchText = suchTextFeld.value;
+    search(SuchText);
+}
+
+function search(SuchText) {
     if (gueltigesDatum(SuchText) && ersterBuchstabeZahl(SuchText)) {
         console.log("Hallo");
         Filter = "all";
@@ -339,4 +348,29 @@ function  heute() {
     datum = new Date();
     neuMalennachDatumsaenderung();
 
+}
+
+
+function over() {
+
+    ModulesFenster.style.visibility = 'visible';
+}
+
+function unover() {
+
+    ModulesFenster.style.visibility = 'hidden';
+}
+
+
+function onclick(Zelle) {
+    var html = "<h1>Veranstantungen am " + Zelle.eventss[0].tag + ". " + getMonthtoString(parseInt(Zelle.eventss[0].monat) - 1) + " " + Zelle.eventss[0].jahr + "</h1><br>";
+    for (var i = 0; i < Zelle.anzahlEvents; i++) {
+        html += "<h2>" + Zelle.eventss[i].name + "</h2><br>";
+        html += "Ort: " + Zelle.eventss[i].ort + "<br>";
+        html += "Zeit: " + Zelle.eventss[i].zeit + "<br>";
+    }
+
+
+    ModulesFenster.innerHTML = html;
+    over();
 }
