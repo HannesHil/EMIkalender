@@ -34,7 +34,6 @@ function datumsaenderungFeil(a) {
 
 function neuMalennachDatumsaenderung() {
 	monatsanzeige.innerHTML = getMonthtoString(datum.getMonth()) + " " + datum.getFullYear();
-	monatsanzeige.className = 'blink';
 	maleZellen();
 
 }

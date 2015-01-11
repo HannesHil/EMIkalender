@@ -22,6 +22,7 @@ body {
     border:1px solid black;
     border-top-left-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
+   	
 }
 
 .tfbutton {
@@ -138,4 +139,13 @@ table,th,td{
     to {
         opacity: 0;
     }
+}
+
+.hinundher{
+	cursor:pointer;
+}
+
+#monatsanzeige{
+	cursor: default;
+	
 }
