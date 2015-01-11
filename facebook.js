@@ -284,7 +284,6 @@ function search(SuchText) {
         datum = new Date(dt.getTime());
     } else {
         Filter = "all";
-        console.log("test");
         if (contains(VeranstaltungsTypen, SuchText)) {
             Filter = SuchText;
         }
@@ -363,12 +362,16 @@ function unover() {
 }
 
 function onclick(Zelle) {
-    var html = "<h1>Veranstantungen am " + Zelle.eventss[0].tag + ". " + getMonthtoString(parseInt(Zelle.eventss[0].monat) - 1) + " " + Zelle.eventss[0].jahr + "</h1><br>";
+    var html = "<b><h1>Veranstantungen am " + Zelle.eventss[0].tag + ". " + getMonthtoString(parseInt(Zelle.eventss[0].monat) - 1) + " " + Zelle.eventss[0].jahr + "</h1><br>";
     for (var i = 0; i < Zelle.anzahlEvents; i++) {
         html += "<h2>" + Zelle.eventss[i].name + "</h2><br>";
         html += "Ort: " + Zelle.eventss[i].ort + "<br>";
         html += "Zeit: " + Zelle.eventss[i].zeit + "<br>";
     }
+
+
+    ModulesFenster.style.background = "url(source/" + Zelle.eventss[0].art + ".jpg)";
+
 
 
     ModulesFenster.innerHTML = html;
