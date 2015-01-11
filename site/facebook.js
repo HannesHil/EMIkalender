@@ -6,6 +6,9 @@ var url = "veranstaltungen.json";
 var Events = 0;
 var suchTextFeld;
 var pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+var VeranstaltungsTypen = new Array("Musik", "Komoedie", "Jugendveranstaltungen", "Messe", "Sport", "Oper");
+var Filter = "all";
+
 
 function datumsaenderungFeil(a) {
     if (a === 0) {
@@ -177,7 +180,8 @@ function maleZellen() {
                 for (var i = 1; i < monattabelle.rows.length; i++) {
                     for (var j = 0; j < monattabelle.rows.item(i).cells.length; j++) {
                         var Zelle = monattabelle.rows.item(i).cells.item(j);
-                        if (Zelle.innerHTML === Events.veranstaltungen[a].tag) {
+                        if (Zelle.innerHTML === Events.veranstaltungen[a].tag &&
+                                isGewollt(Events.veranstaltungen[a].art)) {
                             Zelle.id = 'mitEvent';
                             Zelle.eventss[Zelle.anzahlEvents] = Events.veranstaltungen[a];
                             Zelle.anzahlEvents++;
@@ -189,6 +193,18 @@ function maleZellen() {
         }
     }
 
+}
+
+function isGewollt(Art) {
+    if (Filter === "all") {
+        return true;
+    } else {
+        if (Art === Filter) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 function unfade(element) {
@@ -239,12 +255,70 @@ function ladeJSON() {
     xmlhttp.send();
 }
 
-
-
 function search() {
     var SuchText = suchTextFeld.value;
-    if (SuchText)
+    if (gueltigesDatum(SuchText) && ersterBuchstabeZahl(SuchText)) {
+        console.log("Hallo");
+        Filter = "all";
         var dt = new Date(SuchText.replace(pattern, '$3-$2-$1'));
-    datum = new Date(dt.getTime());
+        datum = new Date(dt.getTime());
+    } else {
+        Filter = "all";
+        if (contains(VeranstaltungsTypen, SuchText)) {
+            Filter = SuchText;
+        }
+    }
     neuMalennachDatumsaenderung();
+}
+
+function ersterBuchstabeZahl(a) {
+    var Zahlen = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    var Buchstabe = a.substring(0, 1);
+    console.log(Buchstabe);
+    for (var i = 0; i < Zahlen.length; i++) {
+        if (Zahlen[i] === parseInt(Buchstabe)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function gueltigesDatum(datum) {
+    //(Schritt 1) Fehlerbehandlung
+    if (!datum)
+        return false;
+    datum = datum.toString();
+
+    //(Schritt 2) Aufspaltung des Datums
+    datum = datum.split(".");
+    if (datum.length != 3)
+        return false;
+
+    //(Schritt 3) Entfernung der fuehrenden Nullen und Anpassung des Monats
+
+    datum[0] = parseInt(datum[0], 10);
+    datum[1] = parseInt(datum[1], 10) - 1;
+
+    //(Schritt 4) Behandlung Jahr nur zweistellig
+    if (datum[2].length == 2)
+        datum[2] = "20" + datum[2];
+
+    //(Schritt 5) Erzeugung eines neuen Dateobjektes
+    var kontrolldatum = new Date(datum[2], datum[1], datum[0]);
+
+    //(Schritt 6) Vergleich, ob das eingegebene Datum gleich dem JS-Datum ist
+    if (kontrolldatum.getDate() == datum[0] && kontrolldatum.getMonth() == datum[1] && kontrolldatum.getFullYear() == datum[2])
+        return true;
+    else
+        return false;
+
+}
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
 }
