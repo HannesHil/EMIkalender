@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"veranstaltungen": [
 		{
 			"tag": "10",
@@ -8,7 +7,7 @@
 			"name": "Noch Sex oder schon verheiratet",
 			"ort": "Kügelndenhaus - Ratskeller",
 			"zeit": "20:00 Uhr",
-			"art": "Komödie",
+			"art": "Komoedie",
 			"laenge": "0"
 		}, {
 			"tag": "27",
@@ -89,112 +88,8 @@
 			"name": "Ficken",
 			"ort": "Ficken",
 			"zeit": "Ficken",
-			"art": "Musik",
+			"art": "Sport",
 			"laenge": "2"
 		}
 	]
-=======
-    "veranstaltungen": [
-        {
-            "tag": "10",
-            "monat": "1",
-            "jahr": "2015",
-            "name": "Noch Sex oder schon verheiratet",
-            "ort": "Kügelndenhaus - Ratskeller",
-            "zeit": "20:00 Uhr",
-            "art": "Komoedie",
-            "laenge": "0"
-        },
-        {
-            "tag": "27",
-            "monat": "03",
-            "jahr": "2015",
-            "name": "Kamouflage Greyscale Tour 2015",
-            "ort": "Kügelndenhaus - Ratskeller",
-            "zeit": "20:00 Uhr",
-            "art": "Musik",
-            "laenge": "0"
-        },
-        {
-            "tag": "14",
-            "monat": "08",
-            "jahr": "2015",
-            "name": "Stadtfest Dresden",
-            "ort": "Dresden",
-            "zeit": "Ganztägig",
-            "art": "Musik",
-            "laenge": "2"
-        },
-        {
-            "tag": "25",
-            "monat": "03",
-            "jahr": "2015",
-            "name": "Spiel, Musik, Ryhthmus",
-            "ort": "Kinder und Jugendhaus 'Patz's Colorbox'",
-            "zeit": "Ganztägig Start: 08:00 Uhr",
-            "art": "Jugendveranstaltungen",
-            "laenge": "0"
-        },
-        {
-            "tag": "12",
-            "monat": "09",
-            "jahr": "2015",
-            "name": "Baumesse Dresden - Alle Wege zu deinem Projekt",
-            "ort": "Flughafen Dresden International",
-            "zeit": "Ganztägig",
-            "art": "Messe",
-            "laenge": "1"
-        },
-        {
-            "tag": "29",
-            "monat": "05",
-            "jahr": "2015",
-            "name": "PIETA 2015",
-            "ort": "Dresden Messe",
-            "zeit": "Ganztägig",
-            "art": "Messe",
-            "laenge": "2"
-        },
-        {
-            "tag": "15",
-            "monat": "03",
-            "jahr": "2015",
-            "name": "F.Martin: Messe für 8-stündingen Doppelchor",
-            "ort": "Frauenkirche",
-            "zeit": "Einlass: 14:00 Uhr Beginn: 15:00 Uhr",
-            "art": "Musik",
-            "laenge": "2"
-        },
-        {
-            "tag": "29",
-            "monat": "01",
-            "jahr": "2015",
-            "name": "F.Martin: Messe für 8-stündingen Doppelchor2",
-            "ort": "Frauenkirche",
-            "zeit": "Einlass: 14:00 Uhr Beginn: 15:00 Uhr",
-            "art": "Musik",
-            "laenge": "2"
-        },
-        {
-            "tag": "29",
-            "monat": "01",
-            "jahr": "2015",
-            "name": "F.Martin: Messe für 8-stündingen Doppelchor3",
-            "ort": "Frauenkirche",
-            "zeit": "Einlass: 14:00 Uhr Beginn: 15:00 Uhr",
-            "art": "Musik",
-            "laenge": "2"
-        },
-        {
-            "tag": "25",
-            "monat": "05",
-            "jahr": "2999",
-            "name": "Ficken",
-            "ort": "Ficken",
-            "zeit": "Ficken",
-            "art": "Sport",
-            "laenge": "2"
-        }
-    ]
->>>>>>> HannesHil-master
 }
