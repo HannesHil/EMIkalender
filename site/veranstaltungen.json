@@ -89,6 +89,16 @@
             "zeit": "Einlass: 14:00 Uhr Beginn: 15:00 Uhr",
             "art": "Musik",
             "laenge": "2"
+        },
+        {
+            "tag": "25",
+            "monat": "05",
+            "jahr": "2999",
+            "name": "Ficken",
+            "ort": "Ficken",
+            "zeit": "Ficken",
+            "art": "Musik",
+            "laenge": "2"
         }
     ]
 }
