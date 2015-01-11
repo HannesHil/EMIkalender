@@ -135,65 +135,6 @@ function getMaxTageimMonat(Jahr, Monat) {
 }
 
 function maleZellen() {
-<<<<<<< HEAD
-	var hilfsdatum = new Date(datum.getTime());
-	hilfsdatum.setDate(0);
-	var a = hilfsdatum.getDay();
-	var hilf = 0;
-	var hilf2 = 0;
-	var MaxTage = getMaxTageimMonat(datum.getFullYear(), datum.getMonth());
-	for (var i = 1; i < monattabelle.rows.length; i++) {
-		for (var j = 0; j < monattabelle.rows.item(i).cells.length; j++) {
-			var Zelle = monattabelle.rows.item(i).cells.item(j);
-			Zelle.anzahlEvents = 0;
-			Zelle.onmouseover = function() {
-			
-				if (this.anzahlEvents !== 0) {
-					var Text = "Es gibt " + this.anzahlEvents + " an diesm Tag\n";
-					
-					for (var i = 0; i < this.anzahlEvents; i++) {
-						Text += 'Event ' + (i + 1) + ' Wo? ' + this.eventss[i].ort + ' \n';
-					}
-					
-			/*		alert(Text); */
-			Tip(Text);
-				}
-			
-			
-			};
-			
-			Zelle.onmouseout = UnTip;
-			if (hilf >= a && hilf2 < MaxTage) {
-				hilf2++;
-				Zelle.innerHTML = hilf2;
-				Zelle.id = '#ohneEvent';
-				Zelle.eventss = new Array();
-			} else {
-				Zelle.id = 'nichtimMonat';
-				Zelle.innerHTML = "-";
-			}
-			hilf++;
-		}
-	}
-	if (Events !== 0) {
-		console.log("Geladen");
-		for (var a = 0; a < Events.veranstaltungen.length; a++) {
-			if (datum.getMonth() === Events.veranstaltungen[a].monat - 1) {
-				for (var i = 1; i < monattabelle.rows.length; i++) {
-					for (var j = 0; j < monattabelle.rows.item(i).cells.length; j++) {
-						var Zelle = monattabelle.rows.item(i).cells.item(j);
-						if (Zelle.innerHTML === Events.veranstaltungen[a].tag) {
-							Zelle.id = 'mitEvent';
-							Zelle.eventss[Zelle.anzahlEvents] = Events.veranstaltungen[a];
-							Zelle.anzahlEvents++;
-
-						}
-					}
-				}
-			}
-		}
-	}
-=======
     var hilfsdatum = new Date(datum.getTime());
     hilfsdatum.setDate(0);
     var a = hilfsdatum.getDay();
@@ -247,7 +188,7 @@ function maleZellen() {
             }
         }
     }
->>>>>>> e6b00527f000ffcafe5a4a580f3f1d37b94fa5e7
+
 
 }
 
