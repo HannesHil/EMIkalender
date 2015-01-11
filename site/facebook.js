@@ -239,43 +239,48 @@ function ladeJSON() {
 }
 
 function search() {
-	
+
 	var SuchText = suchTextFeld.value;
-	if (gueltigesDatum(SuchText)){
+	if (gueltigesDatum(SuchText)) {
 		console.log("Ich suche");
-	if (SuchText)
-		var dt = new Date(SuchText.replace(pattern, '$3-$2-$1'));
-	datum = new Date(dt.getTime());
-	neuMalennachDatumsaenderung();}
-	else {
+		if (SuchText)
+			var dt = new Date(SuchText.replace(pattern, '$3-$2-$1'));
+		datum = new Date(dt.getTime());
+		neuMalennachDatumsaenderung();
+	} else {
 		console.log("Ich suche Nicht!")
+		alert("Falsches Format mein Freundchen")
 		return 0;
 	}
 }
 
-function gueltigesDatum (datum)
-{
-    //(Schritt 1) Fehlerbehandlung
- if (!datum) return false;
- datum=datum.toString();
+function gueltigesDatum(datum) {
+	//(Schritt 1) Fehlerbehandlung
+	if (!datum)
+		return false;
+	datum = datum.toString();
 
-    //(Schritt 2) Aufspaltung des Datums
- datum=datum.split(".");
- if (datum.length!=3) return false;
+	//(Schritt 2) Aufspaltung des Datums
+	datum = datum.split(".");
+	if (datum.length != 3)
+		return false;
 
-    //(Schritt 3) Entfernung der fuehrenden Nullen und Anpassung des Monats
+	//(Schritt 3) Entfernung der fuehrenden Nullen und Anpassung des Monats
 
- datum[0]=parseInt(datum[0],10);
- datum[1]=parseInt(datum[1],10)-1;
+	datum[0] = parseInt(datum[0], 10);
+	datum[1] = parseInt(datum[1], 10) - 1;
 
-    //(Schritt 4) Behandlung Jahr nur zweistellig
- if (datum[2].length==2) datum[2]="20"+datum[2];
+	//(Schritt 4) Behandlung Jahr nur zweistellig
+	if (datum[2].length == 2)
+		datum[2] = "20" + datum[2];
 
-    //(Schritt 5) Erzeugung eines neuen Dateobjektes
- var kontrolldatum=new Date(datum[2],datum[1],datum[0]);
+	//(Schritt 5) Erzeugung eines neuen Dateobjektes
+	var kontrolldatum = new Date(datum[2], datum[1], datum[0]);
 
-    //(Schritt 6) Vergleich, ob das eingegebene Datum gleich dem JS-Datum ist
- if (kontrolldatum.getDate()==datum[0] && kontrolldatum.getMonth()==datum[1] && kontrolldatum.getFullYear()==datum[2])
-     return true; else return false;
+	//(Schritt 6) Vergleich, ob das eingegebene Datum gleich dem JS-Datum ist
+	if (kontrolldatum.getDate() == datum[0] && kontrolldatum.getMonth() == datum[1] && kontrolldatum.getFullYear() == datum[2])
+		return true;
+	else
+		return false;
 
 }
