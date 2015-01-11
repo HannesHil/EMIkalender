@@ -361,7 +361,6 @@ function unover() {
     ModulesFenster.style.visibility = 'hidden';
 }
 
-
 function onclick(Zelle) {
     var html = "<h1>Veranstantungen am " + Zelle.eventss[0].tag + ". " + getMonthtoString(parseInt(Zelle.eventss[0].monat) - 1) + " " + Zelle.eventss[0].jahr + "</h1><br>";
     for (var i = 0; i < Zelle.anzahlEvents; i++) {

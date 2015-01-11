@@ -1,59 +1,57 @@
-#haupt{
-	width:60%;
-	height:160px;
-	
-	margin:auto;
-	margin-bottom: 3px;
-	}
+#haupt {
+    width: 60%;
+    height: 150px;
+    margin: auto;
+    margin-bottom: 3px;
+}
 
 body {
     background-color: #FFFFFF;
-    -moz-user-select:none;
-    user-select: none; 
-    -khtml-user-select: none; 
+    -moz-user-select: none;
+    user-select: none;
+    -khtml-user-select: none;
+    background: white;
 }
 
-#tfheader{
-    background-color:#FFFFFF;
-
+#tfheader {
+    background-color: #FFFFFF;
 }
 
-#tfnewsearch{
-    float:right;
-    padding:20px;
+#tfnewsearch {
+    float: right;
+    padding: 20px;
 }
 
-#search{
-	position:relativ;
-	top: 0px;
-	right:0px;
-	}
+#search {
+    float: right;
+    top: 0px;
+    right: 0px;
+}
 
-.tftextinput{
+.tftextinput {
     margin: 0;
     padding: 5px 15px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
-    border:1px solid black;
+    font-size: 14px;
+    border: 1px solid black;
     border-top-left-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
-   	
 }
 
 .tfbutton {
     margin: 0;
     padding: 5px 15px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
+    font-size: 14px;
     outline: none;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     color: #ffffff;
-    border: solid 1px #555555; 
+    border: solid 1px #555555;
     background: #0095cd;
     background: -webkit-gradient(linear, left top, left bottom, from(#d2d4dc), to(#777777));
-    background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+    background: -moz-linear-gradient(top,  #d2d4dc,  #777777);
     border-top-right-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
 }
@@ -62,7 +60,7 @@ body {
     text-decoration: none;
     background: #333333;
     background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#333333));
-    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+    background: -moz-linear-gradient(top,  #999999,  #333333);
 }
 
 /* Fixes submit button height problem in Firefox */
@@ -70,14 +68,14 @@ body {
     border: 0;
 }
 
-.tfclear{
-    clear:both;
+.tfclear {
+    clear: both;
 }
 
 #logo {
-	position: realtiv;
-	left: 0px;
-	top: 0px;
+    float: left;
+    left: 0px;
+    top: 0px;
     width: 300px;
     height: 87px;
 }
@@ -88,48 +86,48 @@ img {
 }
 
 #selektor {
-    float:left;	
+    float: left;
     border: 2px solid #000000;
     height: 85%;
     width: 19.8%;
 }
 
-#ansichtsContainer{
-    text-align:center;
+#ansichtsContainer {
+    text-align: center;
     font-size: 30px;
     border: 2px solid #000000;
-    font-family: Arial, Helvetica, sans-serif;		
+    font-family: Arial, Helvetica, sans-serif;
     width: 60%;
-    height:86.4%;
-    margin:auto;
-  
+    height: 86.4%;
+    margin: auto;
 }
 
-table,th,td{	
-    font-size: 30px;	
-    -moz-user-select:none;
-    user-select: none; 
-    -khtml-user-select: none; 
-    text-align: center;  
-	cursor: default;
+table, th, td {
+    font-size: 30px;
+    -moz-user-select: none;
+    user-select: none;
+    -khtml-user-select: none;
+    text-align: center;
+    cursor: default;
 }
 
-#ohneEvent{
-    background-color : yellow;
+#ohneEvent {
+    background-color: yellow;
 }
 
-#mitEvent{
+#mitEvent {
     background-color: red;
     font-style: oblique;
+    cursor: progress;
 }
 
-#nichtimMonat{
+#nichtimMonat {
     background-color: #A5BEBE;
 }
 
-#monate{
+#monate {
     width: 100%;
-    height:  100%;
+    height: 100%;
 }
 
 .blink {
@@ -148,37 +146,69 @@ table,th,td{
     }
 }
 
-.hinundher{
-	cursor:pointer;
+.hinundher {
+    cursor: pointer;
 }
 
-#monatsanzeige{
-	cursor: default;
-	
+#monatsanzeige {
+    cursor: default;
+}
+#reiter {
+
+    float: left;
+    align: center;
+    width: 100%;
 }
 
-  ul#Navigation {
-    margin: 0; padding: 0.8em;
+ul#Navigation {
+    margin: 0;
+    padding: 0.8em;
     text-align: center;
-   /* border: 1px solid black;*/
+    /* border: 1px solid black;*/
     background-color: white;
-  }
-  ul#Navigation li {
+}
+ul#Navigation li {
     list-style: none;
     display: inline;
-    margin: 0.4em; padding: 0;
-  }
+    margin: 0.4em;
+    padding: 0;
+}
 
-  ul#Navigation a, ul#Navigation span {
+ul#Navigation a, ul#Navigation span {
     padding: 0.2em 1em;
-    text-decoration: none; font-weight: bold;
+    text-decoration: none;
+    font-weight: bold;
     border: 1px solid black;
-    border-left-color: white; border-top-color: white;
-    color: maroon; background-color: #ccc;
-  }
-  ul#Navigation a:hover, ul#Navigation span {
+    border-radius: 10px;
+    color: black;
+    background-color: #ccc;
+}
+ul#Navigation a:hover, ul#Navigation span {
     border-color: white;
-    border-left-color: black; border-top-color: black;
-    color: white; background-color: gray;
-  }
+    color: white;
+    background-color: #afafaf;
+}
+
+
+
+
+.ModularesView {
+    /* some styles to position the modal at the center of the page */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    width: 800px;
+    height: 400px;
+    margin-left: -400px;
+    margin-top: -200px;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    visibility: hidden;
+
+
+    /* needed styles for the overlay */
+    z-index: 10; /* keep on top of other elements on the page */
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+}
 
