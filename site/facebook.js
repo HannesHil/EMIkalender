@@ -142,14 +142,19 @@ function maleZellen() {
 			var Zelle = monattabelle.rows.item(i).cells.item(j);
 			Zelle.anzahlEvents = 0;
 			Zelle.onmouseover = function() {
+				
 				if (this.anzahlEvents !== 0) {
 					var Text = "Es gibt " + this.anzahlEvents + " an diesm Tag\n";
+					
 					for (var i = 0; i < this.anzahlEvents; i++) {
-						Text += "Event " + (i + 1) + " Wo? " + this.eventss[i].ort + " \n";
+						Text += '"Event " + (i + 1) + " Wo? " + this.eventss[i].ort + " \n"';
 					}
-					alert(Text);
+					
+			/*		alert(Text); */
+			Tip(Text);
 				}
-
+			Zelle.onmouseout = UnTip();
+			
 			};
 			if (hilf >= a && hilf2 < MaxTage) {
 				hilf2++;
@@ -215,19 +220,16 @@ function fade(element) {
 }
 
 function ladeJSON() {
-	<<<<<<< HEAD
-	console.log("Test");
-	=======
+
 	console.log("LadeDatei");
-	>>>>>>> 03517b8f30d4b13a425ad1a24cb5af73ac28060d
+
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 			var myArr = JSON.parse(xmlhttp.responseText);
 			Events = myArr;
-			<<<<<<< HEAD
-			=======
+
 			console.log("Fertig Geladen");
-			>>>>>>> 03517b8f30d4b13a425ad1a24cb5af73ac28060d
+
 			maleZellen();
 		}
 	};

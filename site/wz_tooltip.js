@@ -111,6 +111,7 @@ config. Width			= 0			// Tooltip width; 0 for automatic adaption to tooltip cont
 function Tip()
 {
 	tt_Tip(arguments, null);
+	console.log("Tip")
 }
 function TagToTip()
 {
@@ -125,6 +126,7 @@ function UnTip()
 		tt_tDurt.Timer("tt_HideInit()", -tt_aV[DURATION], true);
 	else if(!(tt_aV[STICKY] && (tt_iState & 0x2)))
 		tt_HideInit();
+		console.log("Weg");
 }
 
 //==================  PUBLIC PLUGIN API	 =====================================//
