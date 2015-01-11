@@ -29,7 +29,6 @@ function datumsaenderungFeil(a) {
 }
 
 function neuMalennachDatumsaenderung() {
-    console.log("Test2");
 
     monatsanzeige.innerHTML = getMonthtoString(datum.getMonth()) + " " + datum.getFullYear();
     maleZellen();
@@ -37,8 +36,8 @@ function neuMalennachDatumsaenderung() {
 }
 
 function onloadFunktion() {
+    console.log("StartFunktion");
     ladeJSON();
-    console.log("Bild");
     datum = new Date();
     monattabelle = document.getElementById("monate");
     monatsanzeige = document.getElementById("monatsanzeige");
@@ -216,11 +215,12 @@ function fade(element) {
 }
 
 function ladeJSON() {
-    console.log("Test");
+    console.log("LadeDatei");
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var myArr = JSON.parse(xmlhttp.responseText);
             Events = myArr;
+            console.log("Fertig Geladen");
             maleZellen();
         }
     };
