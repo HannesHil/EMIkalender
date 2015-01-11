@@ -42,10 +42,12 @@ function onloadFunktion() {
 
     console.log("StartFunktion");
     ladeJSON();
+
     datum = new Date();
     monattabelle = document.getElementById("monate");
     monatsanzeige = document.getElementById("monatsanzeige");
     suchTextFeld = document.getElementById("q");
+    suchTextFeld.value = "";
     neuMalennachDatumsaenderung();
 
 }
