@@ -1,95 +1,139 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="https://fonts.googleapis.com/css?family=Muli:300italic,300,400italic,400" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script type="text/javascript" src="facebook.js"></script>
-        <script type="text/javascript" src="source/Komoedie.jpg"></script>
-        <title>DDkalender</title>
-    </head>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300italic,300,400italic,400" rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="facebook.js"></script>
+    <script type="text/javascript" src="source/Komoedie.jpg"></script>
+    <title>DDwebsite</title>
+</head>
 
-    <body onload="onloadFunktion()">
-        <script type="text/javascript" src="wz_tooltip.js"></script>
-        <div class="ModularesView" id="ModularFenster" onclick="unover()">
-            I'm the modal window!
+<body onload="onloadFunktion()">
+<script type="text/javascript" src="wz_tooltip.js"></script>
+<div class="ModularesView" id="ModularFenster" onclick="unover()">
+    I'm the modal window!
+</div>
+<div id="haupt">
+
+    <div id="logo">
+        <img src="source/logo.png" alt="Logo">
+    </div>
+    <div id="search">
+        <div id="tfheader">
+            <form id="tfnewsearch">
+                <input type="text" class="tftextinput" id="q" size="21" maxlength="120" placeholder="DD.MM.JJJJ">
+                <input onclick="searchButton();" type="button" value="suchen" class="tfbutton">
+            </form>
+            <div class="tfclear"></div>
         </div>
-        <div id="haupt">
+    </div>
+    <div id="reiter">
+        <ul id="Navigation">
+            <li onclick="search('Ficken')">
+                <a href="#Beispiel">Alles</a>
+            </li>
+            <li onclick="search('Musik')">
+                <a href="#Beispiel">Musik</a>
+            </li>
+            <li onclick="search('Messe')">
+                <a href="#Beispiel">Messe</a>
+            </li>
+            <li onclick="search('Jugendveranstaltungen')">
+                <a href="#Beispiel">Jugendevents</a>
+            </li>
+            <li onclick="search('Komoedie')">
+                <a href="#Beispiel">Kom&ouml;die </a>
+            </li>
+            <li onclick="search('Oper')">
+                <a href="#Beispiel">Oper</a>
+            </li>
+            <li onclick="search('Sport')">
+                <a href="#Beispiel">Sport</a>
+            </li>
+        </ul>
+    </div>
 
-            <div id="logo">
-                <img src="source/logo.png" alt="Logo">
-            </div>
-            <div id="search">
-                <div id="tfheader">
-                    <form id="tfnewsearch" >
-                        <input type="text" class="tftextinput" id="q" size="21" maxlength="120" placeholder="DD.MM.JJJJ">
-                        <input  onclick="searchButton();" type="button" value="suchen" class="tfbutton">
-                    </form>
-                    <div class="tfclear"></div>
-                </div>
-            </div>
-            <div id="reiter">
-                <ul id="Navigation">
-                    <li onclick="search('Ficken')" >
-                        <a href="#Beispiel" >Alles</a>
-                    </li>
-                    <li onclick="search('Musik')" >
-                        <a href="#Beispiel" >Musik</a>
-                    </li>
-                    <li onclick="search('Messe')">
-                        <a href="#Beispiel" >Messe</a>
-                    </li>
-                    <li onclick="search('Jugendveranstaltungen')">
-                        <a href="#Beispiel">Jugendevents</a>
-                    </li>
-                    <li onclick="search('Komoedie')">
-                        <a href="#Beispiel">Kom&ouml;die </a>
-                    </li>
-                    <li onclick="search('Oper')">
-                        <a href="#Beispiel">Oper</a>
-                    </li>
-                    <li onclick="search('Sport')">
-                        <a href="#Beispiel">Sport</a>
-                    </li>
-                </ul>
-            </div>
+</div>
 
-        </div>
+<div id="ansichtsContainer">
+    <div style="float:left; width:150px" onclick="datumsaenderungFeil(0)" class="hinundher">
 
-        <div id="ansichtsContainer">
-            <div style="float:left; width:150px" onclick="datumsaenderungFeil(0)" class="hinundher">
+        &laquo;
+    </div>
+    <a id="monatsanzeige" onclick="heute()">start</a>
 
-                &laquo;
-            </div>
-            <a id="monatsanzeige" onclick="heute()" >start</a>
-            <div style="float:right; width:150px" onclick="datumsaenderungFeil(1)" class="hinundher">
-                &raquo;
-            </div>
-            <table id="monate" >
-                <tr>
-                    <td>Mon</td><td>Die</td><td>Mit</td><td>Don</td><td>Fre</td><td>Sam</td><td>Son</td>
+    <div style="float:right; width:150px" onclick="datumsaenderungFeil(1)" class="hinundher">
+        &raquo;
+    </div>
+    <table id="monate">
+        <tr>
+            <td>Mon</td>
+            <td>Die</td>
+            <td>Mit</td>
+            <td>Don</td>
+            <td>Fre</td>
+            <td>Sam</td>
+            <td>Son</td>
 
-                </tr>
-                <tr>
-                    <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-                </tr>
-                <tr>
-                    <td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
-                </tr>
-                <tr>
-                    <td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td>
-                </tr>
-                <tr>
-                    <td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
-                </tr>
-                <tr>
-                    <td>29</td><td>30</td><td>31</td><td>-</td><td>-</td><td>-</td><td>-</td>
-                </tr>
-                <tr>
-                    <td>29</td><td>30</td><td>31</td><td>-</td><td>-</td><td>-</td><td>-</td>
-                </tr>
-            </table>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+    </table>
 
-        </div>
-    </body>
+</div>
+</body>
 
 </html>

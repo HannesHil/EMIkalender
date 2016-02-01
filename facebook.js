@@ -1,3 +1,9 @@
+/*
+ * Autors:
+ * 			Maximilian Kindt - Javascript Supervisor
+ * 			Hannes Hilbert   - Javascript Supervisant
+ */
+
 var datum;
 var monattabelle;
 var monatsanzeige;
@@ -159,7 +165,7 @@ function maleZellen() {
                         s = "s";
                     }
                     var Text = "Es gibt " + this.anzahlEvents + " Event" + s + " an diesem Tag.\n";
-//                    
+                    //
                     Tip(Text);
                 }
             };
@@ -196,8 +202,7 @@ function maleZellen() {
                 for (var i = 1; i < monattabelle.rows.length; i++) {
                     for (var j = 0; j < monattabelle.rows.item(i).cells.length; j++) {
                         var Zelle = monattabelle.rows.item(i).cells.item(j);
-                        if (Zelle.innerHTML === Events.veranstaltungen[a].tag
-                                && isGewollt(Events.veranstaltungen[a].art) && Zelle.id !== 'nichtimMonat') {
+                        if (Zelle.innerHTML === Events.veranstaltungen[a].tag && isGewollt(Events.veranstaltungen[a].art) && Zelle.id !== 'nichtimMonat') {
                             Zelle.id = 'mitEvent';
                             Zelle.eventss[Zelle.anzahlEvents] = Events.veranstaltungen[a];
                             Zelle.anzahlEvents++;
@@ -344,12 +349,11 @@ function contains(a, obj) {
 
 }
 
-function  heute() {
+function heute() {
     datum = new Date();
     neuMalennachDatumsaenderung();
 
 }
-
 
 function over() {
 
@@ -369,10 +373,7 @@ function onclick(Zelle) {
         html += "Zeit: " + Zelle.eventss[i].zeit + "<br>";
     }
 
-
-    ModulesFenster.style.background = "url(source/" + Zelle.eventss[0].art + ".jpg)";
-
-
+    /* ModulesFenster.style.background = "url(source/" + Zelle.eventss[0].art + ".jpg)";*/
 
     ModulesFenster.innerHTML = html;
     over();

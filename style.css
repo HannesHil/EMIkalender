@@ -51,7 +51,7 @@ body {
     border: solid 1px #555555;
     background: #0095cd;
     background: -webkit-gradient(linear, left top, left bottom, from(#d2d4dc), to(#777777));
-    background: -moz-linear-gradient(top,  #d2d4dc,  #777777);
+    background: -moz-linear-gradient(top, #d2d4dc, #777777);
     border-top-right-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
 }
@@ -60,7 +60,7 @@ body {
     text-decoration: none;
     background: #333333;
     background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#333333));
-    background: -moz-linear-gradient(top,  #999999,  #333333);
+    background: -moz-linear-gradient(top, #999999, #333333);
 }
 
 /* Fixes submit button height problem in Firefox */
@@ -116,14 +116,15 @@ table, th, td {
 }
 
 #mitEvent {
-    background-color: red;
+    /*background-color: red; */
     font-style: oblique;
-    cursor: progress;
-     
+    cursor: pointer;
+    color: red;
 }
 
 #nichtimMonat {
-    background-color: #A5BEBE;
+    /*background-color: #A5BEBE;*/
+    color: #A5BEBE;
 }
 
 #monate {
@@ -138,6 +139,7 @@ table, th, td {
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
+
 @keyframes blink {
     from {
         opacity: 1;
@@ -154,6 +156,7 @@ table, th, td {
 #monatsanzeige {
     cursor: default;
 }
+
 #reiter {
 
     float: left;
@@ -168,6 +171,7 @@ ul#Navigation {
     /* border: 1px solid black;*/
     background-color: white;
 }
+
 ul#Navigation li {
     list-style: none;
     display: inline;
@@ -184,14 +188,12 @@ ul#Navigation a, ul#Navigation span {
     color: black;
     background-color: #ccc;
 }
+
 ul#Navigation a:hover, ul#Navigation span {
     border-color: white;
     color: white;
     background-color: #afafaf;
 }
-
-
-
 
 .ModularesView {
     /* some styles to position the modal at the center of the page */
@@ -206,10 +208,8 @@ ul#Navigation a:hover, ul#Navigation span {
     text-align: center;
     border-radius: 5px;
     visibility: hidden;
-
-
     /* needed styles for the overlay */
     z-index: 10; /* keep on top of other elements on the page */
-    box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
 }
 

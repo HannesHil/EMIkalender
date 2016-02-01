@@ -1,16 +1,16 @@
 /* This notice must be untouched at all times.
  Copyright (c) 2002-2008 Walter Zorn. All rights reserved.
- 
+
  wz_tooltip.js	 v. 5.31
- 
+
  The latest version is available at
  http://www.walterzorn.com
  or http://www.devira.com
  or http://www.walterzorn.de
- 
+
  Created 1.12.2002 by Walter Zorn (Web: http://www.walterzorn.com )
  Last modified: 7.11.2008
- 
+
  Easy-to-use cross-browser tooltips.
  Just include the script at the beginning of the <body> section, and invoke
  Tip('Tooltip text') to show and UnTip() to hide the tooltip, from the desired
@@ -23,19 +23,19 @@
  which means you can put important, search-engine-relevant stuff into tooltips.
  Appearance & behaviour of tooltips can be individually configured
  via commands passed to Tip() or TagToTip().
- 
+
  Tab Width: 4
  LICENSE: LGPL
- 
+
  This library is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
  License (LGPL) as published by the Free Software Foundation; either
  version 2.1 of the License, or (at your option) any later version.
- 
+
  This library is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- 
+
  For more details on the GNU Lesser General Public License,
  see http://www.gnu.org/copyleft/lesser.html
  */
@@ -105,21 +105,16 @@ config.Width = 0			// Tooltip width; 0 for automatic adaption to tooltip content
 //=======  END OF TOOLTIP CONFIG, DO NOT CHANGE ANYTHING BELOW  ==============//
 
 
-
-
 //=====================  PUBLIC  =============================================//
-function Tip()
-{
+function Tip() {
     tt_Tip(arguments, null);
 }
-function TagToTip()
-{
+function TagToTip() {
     var t2t = tt_GetElt(arguments[0]);
     if (t2t)
         tt_Tip(arguments, t2t);
 }
-function UnTip()
-{
+function UnTip() {
     tt_OpReHref();
     if (tt_aV[DURATION] < 0 && (tt_iState & 0x2))
         tt_tDurt.Timer("tt_HideInit()", -tt_aV[DURATION], true);
@@ -133,48 +128,40 @@ function UnTip()
 // OnMoveAfter, OnHideInit, OnHide, OnKill
 
 var tt_aElt = new Array(10), // Container DIV, outer title & body DIVs, inner title & body TDs, closebutton SPAN, shadow DIVs, and IFRAME to cover windowed elements in IE
-        tt_aV = new Array(), // Caches and enumerates config data for currently active tooltip
-        tt_sContent, // Inner tooltip text or HTML
-        tt_t2t, tt_t2tDad, // Tag converted to tip, and its DOM parent element
-        tt_musX, tt_musY,
-        tt_over,
-        tt_x, tt_y, tt_w, tt_h; // Position, width and height of currently displayed tooltip
+    tt_aV = new Array(), // Caches and enumerates config data for currently active tooltip
+    tt_sContent, // Inner tooltip text or HTML
+    tt_t2t, tt_t2tDad, // Tag converted to tip, and its DOM parent element
+    tt_musX, tt_musY,
+    tt_over,
+    tt_x, tt_y, tt_w, tt_h; // Position, width and height of currently displayed tooltip
 
-function tt_Extension()
-{
+function tt_Extension() {
     tt_ExtCmdEnum();
     tt_aExt[tt_aExt.length] = this;
     return this;
 }
-function tt_SetTipPos(x, y)
-{
+function tt_SetTipPos(x, y) {
     var css = tt_aElt[0].style;
 
     tt_x = x;
     tt_y = y;
     css.left = x + "px";
     css.top = y + "px";
-    if (tt_ie56)
-    {
+    if (tt_ie56) {
         var ifrm = tt_aElt[tt_aElt.length - 1];
-        if (ifrm)
-        {
+        if (ifrm) {
             ifrm.style.left = css.left;
             ifrm.style.top = css.top;
         }
     }
 }
-function tt_HideInit()
-{
-    if (tt_iState)
-    {
+function tt_HideInit() {
+    if (tt_iState) {
         tt_ExtCallFncs(0, "HideInit");
         tt_iState &= ~(0x4 | 0x8);
-        if (tt_flagOpa && tt_aV[FADEOUT])
-        {
+        if (tt_flagOpa && tt_aV[FADEOUT]) {
             tt_tFade.EndTimer();
-            if (tt_opa)
-            {
+            if (tt_opa) {
                 var n = Math.round(tt_aV[FADEOUT] / (tt_aV[FADEINTERVAL] * (tt_aV[OPACITY] / tt_opa)));
                 tt_Fade(tt_opa, tt_opa, 0, n);
                 return;
@@ -183,13 +170,10 @@ function tt_HideInit()
         tt_tHide.Timer("tt_Hide();", 1, false);
     }
 }
-function tt_Hide()
-{
-    if (tt_db && tt_iState)
-    {
+function tt_Hide() {
+    if (tt_db && tt_iState) {
         tt_OpReHref();
-        if (tt_iState & 0x2)
-        {
+        if (tt_iState & 0x2) {
             tt_aElt[0].style.visibility = "hidden";
             tt_ExtCallFncs(0, "Hide");
         }
@@ -197,8 +181,7 @@ function tt_Hide()
         tt_tHide.EndTimer();
         tt_tDurt.EndTimer();
         tt_tFade.EndTimer();
-        if (!tt_op && !tt_ie)
-        {
+        if (!tt_op && !tt_ie) {
             tt_tWaitMov.EndTimer();
             tt_bWait = false;
         }
@@ -216,70 +199,55 @@ function tt_Hide()
             tt_aElt[tt_aElt.length - 1].style.display = "none";
     }
 }
-function tt_GetElt(id)
-{
-    return(document.getElementById ? document.getElementById(id)
-            : document.all ? document.all[id]
-            : null);
+function tt_GetElt(id) {
+    return (document.getElementById ? document.getElementById(id)
+        : document.all ? document.all[id]
+        : null);
 }
-function tt_GetDivW(el)
-{
-    return(el ? (el.offsetWidth || el.style.pixelWidth || 0) : 0);
+function tt_GetDivW(el) {
+    return (el ? (el.offsetWidth || el.style.pixelWidth || 0) : 0);
 }
-function tt_GetDivH(el)
-{
-    return(el ? (el.offsetHeight || el.style.pixelHeight || 0) : 0);
+function tt_GetDivH(el) {
+    return (el ? (el.offsetHeight || el.style.pixelHeight || 0) : 0);
 }
-function tt_GetScrollX()
-{
-    return(window.pageXOffset || (tt_db ? (tt_db.scrollLeft || 0) : 0));
+function tt_GetScrollX() {
+    return (window.pageXOffset || (tt_db ? (tt_db.scrollLeft || 0) : 0));
 }
-function tt_GetScrollY()
-{
-    return(window.pageYOffset || (tt_db ? (tt_db.scrollTop || 0) : 0));
+function tt_GetScrollY() {
+    return (window.pageYOffset || (tt_db ? (tt_db.scrollTop || 0) : 0));
 }
-function tt_GetClientW()
-{
+function tt_GetClientW() {
     return tt_GetWndCliSiz("Width");
 }
-function tt_GetClientH()
-{
+function tt_GetClientH() {
     return tt_GetWndCliSiz("Height");
 }
-function tt_GetEvtX(e)
-{
+function tt_GetEvtX(e) {
     return (e ? ((typeof (e.pageX) != tt_u) ? e.pageX : (e.clientX + tt_GetScrollX())) : 0);
 }
-function tt_GetEvtY(e)
-{
+function tt_GetEvtY(e) {
     return (e ? ((typeof (e.pageY) != tt_u) ? e.pageY : (e.clientY + tt_GetScrollY())) : 0);
 }
-function tt_AddEvtFnc(el, sEvt, PFnc)
-{
-    if (el)
-    {
+function tt_AddEvtFnc(el, sEvt, PFnc) {
+    if (el) {
         if (el.addEventListener)
             el.addEventListener(sEvt, PFnc, false);
         else
             el.attachEvent("on" + sEvt, PFnc);
     }
 }
-function tt_RemEvtFnc(el, sEvt, PFnc)
-{
-    if (el)
-    {
+function tt_RemEvtFnc(el, sEvt, PFnc) {
+    if (el) {
         if (el.removeEventListener)
             el.removeEventListener(sEvt, PFnc, false);
         else
             el.detachEvent("on" + sEvt, PFnc);
     }
 }
-function tt_GetDad(el)
-{
-    return(el.parentNode || el.parentElement || el.offsetParent);
+function tt_GetDad(el) {
+    return (el.parentNode || el.parentElement || el.offsetParent);
 }
-function tt_MovDomNode(el, dadFrom, dadTo)
-{
+function tt_MovDomNode(el, dadFrom, dadTo) {
     if (dadFrom)
         dadFrom.removeChild(el);
     if (dadTo)
@@ -289,24 +257,23 @@ function tt_MovDomNode(el, dadFrom, dadTo)
 //======================  PRIVATE  ===========================================//
 var tt_aExt = new Array(), // Array of extension objects
 
-        tt_db, tt_op, tt_ie, tt_ie56, tt_bBoxOld, // Browser flags
-        tt_body,
-        tt_ovr_, // HTML element the mouse is currently over
-        tt_flagOpa, // Opacity support: 1=IE, 2=Khtml, 3=KHTML, 4=Moz, 5=W3C
-        tt_maxPosX, tt_maxPosY,
-        tt_iState = 0, // Tooltip active |= 1, shown |= 2, move with mouse |= 4, exclusive |= 8
-        tt_opa, // Currently applied opacity
-        tt_bJmpVert, tt_bJmpHorz, // Tip temporarily on other side of mouse
-        tt_elDeHref, // The tag from which we've removed the href attribute
+    tt_db, tt_op, tt_ie, tt_ie56, tt_bBoxOld, // Browser flags
+    tt_body,
+    tt_ovr_, // HTML element the mouse is currently over
+    tt_flagOpa, // Opacity support: 1=IE, 2=Khtml, 3=KHTML, 4=Moz, 5=W3C
+    tt_maxPosX, tt_maxPosY,
+    tt_iState = 0, // Tooltip active |= 1, shown |= 2, move with mouse |= 4, exclusive |= 8
+    tt_opa, // Currently applied opacity
+    tt_bJmpVert, tt_bJmpHorz, // Tip temporarily on other side of mouse
+    tt_elDeHref, // The tag from which we've removed the href attribute
 // Timer
-        tt_tShow = new Number(0), tt_tHide = new Number(0), tt_tDurt = new Number(0),
-        tt_tFade = new Number(0), tt_tWaitMov = new Number(0),
-        tt_bWait = false,
-        tt_u = "undefined";
+    tt_tShow = new Number(0), tt_tHide = new Number(0), tt_tDurt = new Number(0),
+    tt_tFade = new Number(0), tt_tWaitMov = new Number(0),
+    tt_bWait = false,
+    tt_u = "undefined";
 
 
-function tt_Init()
-{
+function tt_Init() {
     tt_MkCmdEnum();
     // Send old browsers instantly to hell
     if (!tt_Browser() || !tt_MkMainDiv())
@@ -322,58 +289,50 @@ function tt_Init()
     tt_AddEvtFnc(window, "unload", tt_Hide);
 }
 // Creates command names by translating config variable names to upper case
-function tt_MkCmdEnum()
-{
+function tt_MkCmdEnum() {
     var n = 0;
     for (var i in config)
         eval("window." + i.toString().toUpperCase() + " = " + n++);
     tt_aV.length = n;
 }
-function tt_Browser()
-{
+function tt_Browser() {
     var n, nv, n6, w3c;
 
     n = navigator.userAgent.toLowerCase(),
-            nv = navigator.appVersion;
+        nv = navigator.appVersion;
     tt_op = (document.defaultView && typeof (eval("w" + "indow" + "." + "o" + "p" + "er" + "a")) != tt_u);
     tt_ie = n.indexOf("msie") != -1 && document.all && !tt_op;
-    if (tt_ie)
-    {
+    if (tt_ie) {
         var ieOld = (!document.compatMode || document.compatMode == "BackCompat");
         tt_db = !ieOld ? document.documentElement : (document.body || null);
         if (tt_db)
             tt_ie56 = parseFloat(nv.substring(nv.indexOf("MSIE") + 5)) >= 5.5
-                    && typeof document.body.style.maxHeight == tt_u;
+            && typeof document.body.style.maxHeight == tt_u;
     }
-    else
-    {
+    else {
         tt_db = document.documentElement || document.body ||
-                (document.getElementsByTagName ? document.getElementsByTagName("body")[0]
-                        : null);
-        if (!tt_op)
-        {
+        (document.getElementsByTagName ? document.getElementsByTagName("body")[0]
+            : null);
+        if (!tt_op) {
             n6 = document.defaultView && typeof document.defaultView.getComputedStyle != tt_u;
             w3c = !n6 && document.getElementById;
         }
     }
     tt_body = (document.getElementsByTagName ? document.getElementsByTagName("body")[0]
-            : (document.body || null));
-    if (tt_ie || n6 || tt_op || w3c)
-    {
-        if (tt_body && tt_db)
-        {
+        : (document.body || null));
+    if (tt_ie || n6 || tt_op || w3c) {
+        if (tt_body && tt_db) {
             if (document.attachEvent || document.addEventListener)
                 return true;
         }
         else
             tt_Err("wz_tooltip.js must be included INSIDE the body section,"
-                    + " immediately after the opening <body> tag.", false);
+            + " immediately after the opening <body> tag.", false);
     }
     tt_db = null;
     return false;
 }
-function tt_MkMainDiv()
-{
+function tt_MkMainDiv() {
     // Create the tooltip DIV
     if (tt_body.insertAdjacentHTML)
         tt_body.insertAdjacentHTML("afterBegin", tt_MkMainDivHtm());
@@ -384,32 +343,27 @@ function tt_MkMainDiv()
     tt_db = null;
     return false;
 }
-function tt_MkMainDivHtm()
-{
-    return(
-            '<div id="WzTtDiV"></div>' +
-            (tt_ie56 ? ('<iframe id="WzTtIfRm" src="javascript:false" scrolling="no" frameborder="0" style="filter:Alpha(opacity=0);position:absolute;top:0px;left:0px;display:none;"></iframe>')
-                    : '')
-            );
+function tt_MkMainDivHtm() {
+    return (
+    '<div id="WzTtDiV"></div>' +
+    (tt_ie56 ? ('<iframe id="WzTtIfRm" src="javascript:false" scrolling="no" frameborder="0" style="filter:Alpha(opacity=0);position:absolute;top:0px;left:0px;display:none;"></iframe>')
+        : '')
+    );
 }
-function tt_MkMainDivDom()
-{
+function tt_MkMainDivDom() {
     var el = document.createElement("div");
     if (el)
         el.id = "WzTtDiV";
     return el;
 }
-function tt_GetMainDivRefs()
-{
+function tt_GetMainDivRefs() {
     tt_aElt[0] = tt_GetElt("WzTtDiV");
-    if (tt_ie56 && tt_aElt[0])
-    {
+    if (tt_ie56 && tt_aElt[0]) {
         tt_aElt[tt_aElt.length - 1] = tt_GetElt("WzTtIfRm");
         if (!tt_aElt[tt_aElt.length - 1])
             tt_aElt[0] = null;
     }
-    if (tt_aElt[0])
-    {
+    if (tt_aElt[0]) {
         var css = tt_aElt[0].style;
 
         css.visibility = "hidden";
@@ -419,15 +373,13 @@ function tt_GetMainDivRefs()
     }
     return false;
 }
-function tt_ResetMainDiv()
-{
+function tt_ResetMainDiv() {
     tt_SetTipPos(0, 0);
     tt_aElt[0].innerHTML = "";
     tt_aElt[0].style.width = "0px";
     tt_h = 0;
 }
-function tt_IsW3cBox()
-{
+function tt_IsW3cBox() {
     var css = tt_aElt[0].style;
 
     css.padding = "10px";
@@ -436,72 +388,63 @@ function tt_IsW3cBox()
     css.padding = "0px";
     tt_ResetMainDiv();
 }
-function tt_OpaSupport()
-{
+function tt_OpaSupport() {
     var css = tt_body.style;
 
     tt_flagOpa = (typeof (css.KhtmlOpacity) != tt_u) ? 2
-            : (typeof (css.KHTMLOpacity) != tt_u) ? 3
-            : (typeof (css.MozOpacity) != tt_u) ? 4
-            : (typeof (css.opacity) != tt_u) ? 5
-            : (typeof (css.filter) != tt_u) ? 1
-            : 0;
+        : (typeof (css.KHTMLOpacity) != tt_u) ? 3
+        : (typeof (css.MozOpacity) != tt_u) ? 4
+        : (typeof (css.opacity) != tt_u) ? 5
+        : (typeof (css.filter) != tt_u) ? 1
+        : 0;
 }
 // Ported from http://dean.edwards.name/weblog/2006/06/again/
 // (Dean Edwards et al.)
-function tt_SetOnloadFnc()
-{
+function tt_SetOnloadFnc() {
     tt_AddEvtFnc(document, "DOMContentLoaded", tt_HideSrcTags);
     tt_AddEvtFnc(window, "load", tt_HideSrcTags);
     if (tt_body.attachEvent)
         tt_body.attachEvent("onreadystatechange",
-                function () {
-                    if (tt_body.readyState == "complete")
-                        tt_HideSrcTags();
-                });
-    if (/WebKit|KHTML/i.test(navigator.userAgent))
-    {
+            function () {
+                if (tt_body.readyState == "complete")
+                    tt_HideSrcTags();
+            });
+    if (/WebKit|KHTML/i.test(navigator.userAgent)) {
         var t = setInterval(function () {
-            if (/loaded|complete/.test(document.readyState))
-            {
+            if (/loaded|complete/.test(document.readyState)) {
                 clearInterval(t);
                 tt_HideSrcTags();
             }
         }, 10);
     }
 }
-function tt_HideSrcTags()
-{
+function tt_HideSrcTags() {
     if (!window.tt_HideSrcTags || window.tt_HideSrcTags.done)
         return;
     window.tt_HideSrcTags.done = true;
     if (!tt_HideSrcTagsRecurs(tt_body))
         tt_Err("There are HTML elements to be converted to tooltips.\nIf you"
-                + " want these HTML elements to be automatically hidden, you"
-                + " must edit wz_tooltip.js, and set TagsToTip in the global"
-                + " tooltip configuration to true.", true);
+        + " want these HTML elements to be automatically hidden, you"
+        + " must edit wz_tooltip.js, and set TagsToTip in the global"
+        + " tooltip configuration to true.", true);
 }
-function tt_HideSrcTagsRecurs(dad)
-{
+function tt_HideSrcTagsRecurs(dad) {
     var ovr, asT2t;
     // Walk the DOM tree for tags that have an onmouseover or onclick attribute
     // containing a TagToTip('...') call.
     // (.childNodes first since .children is bugous in Safari)
     var a = dad.childNodes || dad.children || null;
 
-    for (var i = a ? a.length : 0; i; )
-    {
+    for (var i = a ? a.length : 0; i;) {
         --i;
         if (!tt_HideSrcTagsRecurs(a[i]))
             return false;
         ovr = a[i].getAttribute ? (a[i].getAttribute("onmouseover") || a[i].getAttribute("onclick"))
-                : (typeof a[i].onmouseover == "function") ? (a[i].onmouseover || a[i].onclick)
-                : null;
-        if (ovr)
-        {
+            : (typeof a[i].onmouseover == "function") ? (a[i].onmouseover || a[i].onclick)
+            : null;
+        if (ovr) {
             asT2t = ovr.toString().match(/TagToTip\s*\(\s*'[^'.]+'\s*[\),]/);
-            if (asT2t && asT2t.length)
-            {
+            if (asT2t && asT2t.length) {
                 if (!tt_HideSrcTag(asT2t[0]))
                     return false;
             }
@@ -509,16 +452,14 @@ function tt_HideSrcTagsRecurs(dad)
     }
     return true;
 }
-function tt_HideSrcTag(sT2t)
-{
+function tt_HideSrcTag(sT2t) {
     var id, el;
 
     // The ID passed to the found TagToTip() call identifies an HTML element
     // to be converted to a tooltip, so hide that element
     id = sT2t.replace(/.+'([^'.]+)'.+/, "$1");
     el = tt_GetElt(id);
-    if (el)
-    {
+    if (el) {
         if (tt_Debug && !TagsToTip)
             return false;
         else
@@ -526,11 +467,10 @@ function tt_HideSrcTag(sT2t)
     }
     else
         tt_Err("Invalid ID\n'" + id + "'\npassed to TagToTip()."
-                + " There exists no HTML element with that ID.", true);
+        + " There exists no HTML element with that ID.", true);
     return true;
 }
-function tt_Tip(arg, t2t)
-{
+function tt_Tip(arg, t2t) {
     if (!tt_db || (tt_iState & 0x8))
         return;
     if (tt_iState)
@@ -555,8 +495,7 @@ function tt_Tip(arg, t2t)
     tt_ShowInit();
     tt_Move();
 }
-function tt_ReadCmds(a)
-{
+function tt_ReadCmds(a) {
     var i;
 
     // First load the global config values, to initialize also values
@@ -566,18 +505,16 @@ function tt_ReadCmds(a)
         tt_aV[i++] = config[j];
     // Then replace each cached config value for which a command is
     // passed (ensure the # of command args plus value args be even)
-    if (a.length & 1)
-    {
+    if (a.length & 1) {
         for (i = a.length - 1; i > 0; i -= 2)
             tt_aV[a[i - 1]] = a[i];
         return true;
     }
     tt_Err("Incorrect call of Tip() or TagToTip().\n"
-            + "Each command must be followed by a value.", true);
+    + "Each command must be followed by a value.", true);
     return false;
 }
-function tt_AdaptConfig1()
-{
+function tt_AdaptConfig1() {
     tt_ExtCallFncs(0, "LoadConfig");
     // Inherit unspecified title formattings from body
     if (!tt_aV[TITLEBGCOLOR].length)
@@ -588,13 +525,11 @@ function tt_AdaptConfig1()
         tt_aV[TITLEFONTFACE] = tt_aV[FONTFACE];
     if (!tt_aV[TITLEFONTSIZE].length)
         tt_aV[TITLEFONTSIZE] = tt_aV[FONTSIZE];
-    if (tt_aV[CLOSEBTN])
-    {
+    if (tt_aV[CLOSEBTN]) {
         // Use title colours for non-specified closebutton colours
         if (!tt_aV[CLOSEBTNCOLORS])
             tt_aV[CLOSEBTNCOLORS] = new Array("", "", "", "");
-        for (var i = 4; i; )
-        {
+        for (var i = 4; i;) {
             --i;
             if (!tt_aV[CLOSEBTNCOLORS][i].length)
                 tt_aV[CLOSEBTNCOLORS][i] = (i & 1) ? tt_aV[TITLEFONTCOLOR] : tt_aV[TITLEBGCOLOR];
@@ -610,19 +545,15 @@ function tt_AdaptConfig1()
     if (tt_aV[FADEIN] && tt_flagOpa && tt_aV[DELAY] > 100)
         tt_aV[DELAY] = Math.max(tt_aV[DELAY] - tt_aV[FADEIN], 100);
 }
-function tt_AdaptConfig2()
-{
-    if (tt_aV[CENTERMOUSE])
-    {
+function tt_AdaptConfig2() {
+    if (tt_aV[CENTERMOUSE]) {
         tt_aV[OFFSETX] -= ((tt_w - (tt_aV[SHADOW] ? tt_aV[SHADOWWIDTH] : 0)) >> 1);
         tt_aV[JUMPHORZ] = false;
     }
 }
 // Expose content globally so extensions can modify it
-function tt_MkTipContent(a)
-{
-    if (tt_t2t)
-    {
+function tt_MkTipContent(a) {
+    if (tt_t2t) {
         if (tt_aV[COPYCONTENT])
             tt_sContent = tt_t2t.innerHTML;
         else
@@ -632,60 +563,56 @@ function tt_MkTipContent(a)
         tt_sContent = a[0];
     tt_ExtCallFncs(0, "CreateContentString");
 }
-function tt_MkTipSubDivs()
-{
+function tt_MkTipSubDivs() {
     var sCss = 'position:relative;margin:0px;padding:0px;border-width:0px;left:0px;top:0px;line-height:normal;width:auto;',
-            sTbTrTd = ' cellspacing="0" cellpadding="0" border="0" style="' + sCss + '"><tbody style="' + sCss + '"><tr><td ';
+        sTbTrTd = ' cellspacing="0" cellpadding="0" border="0" style="' + sCss + '"><tbody style="' + sCss + '"><tr><td ';
 
     tt_aElt[0].style.width = tt_GetClientW() + "px";
     tt_aElt[0].innerHTML =
-            (''
-                    + (tt_aV[TITLE].length ?
-                            ('<div id="WzTiTl" style="position:relative;z-index:1;">'
-                                    + '<table id="WzTiTlTb"' + sTbTrTd + 'id="WzTiTlI" style="' + sCss + '">'
-                                    + tt_aV[TITLE]
-                                    + '</td>'
-                                    + (tt_aV[CLOSEBTN] ?
-                                            ('<td align="right" style="' + sCss
-                                                    + 'text-align:right;">'
-                                                    + '<span id="WzClOsE" style="position:relative;left:2px;padding-left:2px;padding-right:2px;'
-                                                    + 'cursor:' + (tt_ie ? 'hand' : 'pointer')
-                                                    + ';" onmouseover="tt_OnCloseBtnOver(1)" onmouseout="tt_OnCloseBtnOver(0)" onclick="tt_HideInit()">'
-                                                    + tt_aV[CLOSEBTNTEXT]
-                                                    + '</span></td>')
-                                            : '')
-                                    + '</tr></tbody></table></div>')
-                            : '')
-                    + '<div id="WzBoDy" style="position:relative;z-index:0;">'
-                    + '<table' + sTbTrTd + 'id="WzBoDyI" style="' + sCss + '">'
-                    + tt_sContent
-                    + '</td></tr></tbody></table></div>'
-                    + (tt_aV[SHADOW]
-                            ? ('<div id="WzTtShDwR" style="position:absolute;overflow:hidden;"></div>'
-                                    + '<div id="WzTtShDwB" style="position:relative;overflow:hidden;"></div>')
-                            : '')
-                    );
+        (''
+        + (tt_aV[TITLE].length ?
+            ('<div id="WzTiTl" style="position:relative;z-index:1;">'
+            + '<table id="WzTiTlTb"' + sTbTrTd + 'id="WzTiTlI" style="' + sCss + '">'
+            + tt_aV[TITLE]
+            + '</td>'
+            + (tt_aV[CLOSEBTN] ?
+                ('<td align="right" style="' + sCss
+                + 'text-align:right;">'
+                + '<span id="WzClOsE" style="position:relative;left:2px;padding-left:2px;padding-right:2px;'
+                + 'cursor:' + (tt_ie ? 'hand' : 'pointer')
+                + ';" onmouseover="tt_OnCloseBtnOver(1)" onmouseout="tt_OnCloseBtnOver(0)" onclick="tt_HideInit()">'
+                + tt_aV[CLOSEBTNTEXT]
+                + '</span></td>')
+                : '')
+            + '</tr></tbody></table></div>')
+            : '')
+        + '<div id="WzBoDy" style="position:relative;z-index:0;">'
+        + '<table' + sTbTrTd + 'id="WzBoDyI" style="' + sCss + '">'
+        + tt_sContent
+        + '</td></tr></tbody></table></div>'
+        + (tt_aV[SHADOW]
+            ? ('<div id="WzTtShDwR" style="position:absolute;overflow:hidden;"></div>'
+        + '<div id="WzTtShDwB" style="position:relative;overflow:hidden;"></div>')
+            : '')
+        );
     tt_GetSubDivRefs();
     // Convert DOM node to tip
     if (tt_t2t && !tt_aV[COPYCONTENT])
         tt_El2Tip();
     tt_ExtCallFncs(0, "SubDivsCreated");
 }
-function tt_GetSubDivRefs()
-{
+function tt_GetSubDivRefs() {
     var aId = new Array("WzTiTl", "WzTiTlTb", "WzTiTlI", "WzClOsE", "WzBoDy", "WzBoDyI", "WzTtShDwB", "WzTtShDwR");
 
     for (var i = aId.length; i; --i)
         tt_aElt[i] = tt_GetElt(aId[i - 1]);
 }
-function tt_FormatTip()
-{
+function tt_FormatTip() {
     var css, w, h, pad = tt_aV[PADDING], padT, wBrd = tt_aV[BORDERWIDTH],
-            iOffY, iOffSh, iAdd = (pad + wBrd) << 1;
+        iOffY, iOffSh, iAdd = (pad + wBrd) << 1;
 
     //--------- Title DIV ----------
-    if (tt_aV[TITLE].length)
-    {
+    if (tt_aV[TITLE].length) {
         padT = tt_aV[TITLEPADDING];
         css = tt_aElt[1].style;
         css.background = tt_aV[TITLEBGCOLOR];
@@ -700,8 +627,7 @@ function tt_FormatTip()
         css.fontWeight = "bold";
         css.textAlign = tt_aV[TITLEALIGN];
         // Close button DIV
-        if (tt_aElt[4])
-        {
+        if (tt_aElt[4]) {
             css = tt_aElt[4].style;
             css.background = tt_aV[CLOSEBTNCOLORS][0];
             css.color = tt_aV[CLOSEBTNCOLORS][1];
@@ -711,8 +637,7 @@ function tt_FormatTip()
         }
         if (tt_aV[WIDTH] > 0)
             tt_w = tt_aV[WIDTH];
-        else
-        {
+        else {
             tt_w = tt_GetDivW(tt_aElt[3]) + tt_GetDivW(tt_aElt[4]);
             // Some spacing between title DIV and closebutton
             if (tt_aElt[4])
@@ -724,8 +649,7 @@ function tt_FormatTip()
         // Ensure the top border of the body DIV be covered by the title DIV
         iOffY = -wBrd;
     }
-    else
-    {
+    else {
         tt_w = 0;
         iOffY = 0;
     }
@@ -733,8 +657,7 @@ function tt_FormatTip()
     //-------- Body DIV ------------
     css = tt_aElt[5].style;
     css.top = iOffY + "px";
-    if (wBrd)
-    {
+    if (wBrd) {
         css.borderColor = tt_aV[BORDERCOLOR];
         css.borderStyle = tt_aV[BORDERSTYLE];
         css.borderWidth = wBrd + "px";
@@ -745,8 +668,7 @@ function tt_FormatTip()
         css.backgroundImage = "url(" + tt_aV[BGIMG] + ")";
     css.padding = pad + "px";
     css.textAlign = tt_aV[TEXTALIGN];
-    if (tt_aV[HEIGHT])
-    {
+    if (tt_aV[HEIGHT]) {
         css.overflow = "auto";
         if (tt_aV[HEIGHT] > 0)
             css.height = (tt_aV[HEIGHT] + iAdd) + "px";
@@ -765,8 +687,7 @@ function tt_FormatTip()
     // Width like title (if existent)
     else if (tt_aV[WIDTH] == -1 && tt_w)
         w = tt_w;
-    else
-    {
+    else {
         // Measure width of the body's inner TD, as some browsers would expand
         // the container and outer body DIV to 100%
         w = tt_GetDivW(tt_aElt[6]);
@@ -779,8 +700,7 @@ function tt_FormatTip()
     tt_w += iAdd;
 
     //--------- Shadow DIVs ------------
-    if (tt_aV[SHADOW])
-    {
+    if (tt_aV[SHADOW]) {
         tt_w += tt_aV[SHADOWWIDTH];
         iOffSh = Math.floor((tt_aV[SHADOWWIDTH] * 4) / 3);
         // Bottom shadow
@@ -805,8 +725,7 @@ function tt_FormatTip()
     tt_FixSize(iOffY, iOffSh);
 }
 // Fixate the size so it can't dynamically change while the tooltip is moving.
-function tt_FixSize(iOffY, iOffSh)
-{
+function tt_FixSize(iOffY, iOffSh) {
     var wIn, wOut, h, add, pad = tt_aV[PADDING], wBrd = tt_aV[BORDERWIDTH], i;
 
     tt_aElt[0].style.width = tt_w + "px";
@@ -818,8 +737,7 @@ function tt_FixSize(iOffY, iOffSh)
         wIn -= (pad + wBrd) << 1;
     tt_aElt[5].style.width = wIn + "px";
     // Title
-    if (tt_aElt[1])
-    {
+    if (tt_aElt[1]) {
         wIn = wOut - ((tt_aV[TITLEPADDING] + 2) << 1);
         if (!tt_bBoxOld)
             wOut = wIn;
@@ -827,11 +745,9 @@ function tt_FixSize(iOffY, iOffSh)
         tt_aElt[2].style.width = wIn + "px";
     }
     // Max height specified
-    if (tt_h)
-    {
+    if (tt_h) {
         h = tt_GetDivH(tt_aElt[5]);
-        if (h > tt_h)
-        {
+        if (h > tt_h) {
             if (!tt_bBoxOld)
                 tt_h -= (pad + wBrd) << 1;
             tt_aElt[5].style.height = tt_h + "px";
@@ -842,41 +758,34 @@ function tt_FixSize(iOffY, iOffSh)
     if (tt_aElt[8])
         tt_aElt[8].style.height = (tt_h - iOffSh) + "px";
     i = tt_aElt.length - 1;
-    if (tt_aElt[i])
-    {
+    if (tt_aElt[i]) {
         tt_aElt[i].style.width = tt_w + "px";
         tt_aElt[i].style.height = tt_h + "px";
     }
 }
-function tt_DeAlt(el)
-{
+function tt_DeAlt(el) {
     var aKid;
 
-    if (el)
-    {
+    if (el) {
         if (el.alt)
             el.alt = "";
         if (el.title)
             el.title = "";
         aKid = el.childNodes || el.children || null;
-        if (aKid)
-        {
-            for (var i = aKid.length; i; )
+        if (aKid) {
+            for (var i = aKid.length; i;)
                 tt_DeAlt(aKid[--i]);
         }
     }
 }
 // This hack removes the native tooltips over links in Opera
-function tt_OpDeHref(el)
-{
+function tt_OpDeHref(el) {
     if (!tt_op)
         return;
     if (tt_elDeHref)
         tt_OpReHref();
-    while (el)
-    {
-        if (el.hasAttribute && el.hasAttribute("href"))
-        {
+    while (el) {
+        if (el.hasAttribute && el.hasAttribute("href")) {
             el.t_href = el.getAttribute("href");
             el.t_stats = window.status;
             el.removeAttribute("href");
@@ -889,18 +798,15 @@ function tt_OpDeHref(el)
         el = tt_GetDad(el);
     }
 }
-function tt_OpReHref()
-{
-    if (tt_elDeHref)
-    {
+function tt_OpReHref() {
+    if (tt_elDeHref) {
         tt_elDeHref.setAttribute("href", tt_elDeHref.t_href);
         tt_RemEvtFnc(tt_elDeHref, "mousedown", tt_OpReHref);
         window.status = tt_elDeHref.t_stats;
         tt_elDeHref = null;
     }
 }
-function tt_El2Tip()
-{
+function tt_El2Tip() {
     var css = tt_t2t.style;
 
     // Store previous positioning
@@ -916,8 +822,7 @@ function tt_El2Tip()
     css.position = "static";
     css.left = css.top = css.marginLeft = css.marginTop = "0px";
 }
-function tt_UnEl2Tip()
-{
+function tt_UnEl2Tip() {
     // Restore positioning and display
     var css = tt_t2t.style;
 
@@ -928,8 +833,7 @@ function tt_UnEl2Tip()
     css.top = tt_t2t.t_ct;
     tt_t2tDad = null;
 }
-function tt_OverInit()
-{
+function tt_OverInit() {
     if (window.event)
         tt_over = window.event.target || window.event.srcElement;
     else
@@ -937,14 +841,12 @@ function tt_OverInit()
     tt_DeAlt(tt_over);
     tt_OpDeHref(tt_over);
 }
-function tt_ShowInit()
-{
+function tt_ShowInit() {
     tt_tShow.Timer("tt_Show()", tt_aV[DELAY], true);
     if (tt_aV[CLICKCLOSE] || tt_aV[CLICKSTICKY])
         tt_AddEvtFnc(document, "mouseup", tt_OnLClick);
 }
-function tt_Show()
-{
+function tt_Show() {
     var css = tt_aElt[0].style;
 
     // Override the z-index of the topmost wz_dragdrop.js D&D item
@@ -962,41 +864,33 @@ function tt_Show()
         tt_Fade(0, 0, tt_aV[OPACITY], Math.round(tt_aV[FADEIN] / tt_aV[FADEINTERVAL]));
     tt_ShowIfrm();
 }
-function tt_ShowIfrm()
-{
-    if (tt_ie56)
-    {
+function tt_ShowIfrm() {
+    if (tt_ie56) {
         var ifrm = tt_aElt[tt_aElt.length - 1];
-        if (ifrm)
-        {
+        if (ifrm) {
             var css = ifrm.style;
             css.zIndex = tt_aElt[0].style.zIndex - 1;
             css.display = "block";
         }
     }
 }
-function tt_Move(e)
-{
+function tt_Move(e) {
     if (e)
         tt_ovr_ = e.target || e.srcElement;
     e = e || window.event;
-    if (e)
-    {
+    if (e) {
         tt_musX = tt_GetEvtX(e);
         tt_musY = tt_GetEvtY(e);
     }
-    if (tt_iState & 0x4)
-    {
+    if (tt_iState & 0x4) {
         // Prevent jam of mousemove events
-        if (!tt_op && !tt_ie)
-        {
+        if (!tt_op && !tt_ie) {
             if (tt_bWait)
                 return;
             tt_bWait = true;
             tt_tWaitMov.Timer("tt_bWait = false;", 1, true);
         }
-        if (tt_aV[FIX])
-        {
+        if (tt_aV[FIX]) {
             tt_iState &= ~0x4;
             tt_PosFix();
         }
@@ -1005,13 +899,11 @@ function tt_Move(e)
         tt_ExtCallFncs([tt_musX, tt_musY], "MoveAfter")
     }
 }
-function tt_Pos(iDim)
-{
+function tt_Pos(iDim) {
     var iX, bJmpMod, cmdAlt, cmdOff, cx, iMax, iScrl, iMus, bJmp;
 
     // Map values according to dimension to calculate
-    if (iDim)
-    {
+    if (iDim) {
         bJmpMod = tt_aV[JUMPVERT];
         cmdAlt = ABOVE;
         cmdOff = OFFSETY;
@@ -1021,8 +913,7 @@ function tt_Pos(iDim)
         iMus = tt_musY;
         bJmp = tt_bJmpVert;
     }
-    else
-    {
+    else {
         bJmpMod = tt_aV[JUMPHORZ];
         cmdAlt = LEFT;
         cmdOff = OFFSETX;
@@ -1032,8 +923,7 @@ function tt_Pos(iDim)
         iMus = tt_musX;
         bJmp = tt_bJmpHorz;
     }
-    if (bJmpMod)
-    {
+    if (bJmpMod) {
         if (tt_aV[cmdAlt] && (!bJmp || tt_CalcPosAlt(iDim) >= iScrl + 16))
             iX = tt_PosAlt(iDim);
         else if (!tt_aV[cmdAlt] && bJmp && tt_CalcPosDef(iDim) > iMax - 16)
@@ -1041,8 +931,7 @@ function tt_Pos(iDim)
         else
             iX = tt_PosDef(iDim);
     }
-    else
-    {
+    else {
         iX = iMus;
         if (tt_aV[cmdAlt])
             iX -= cx + tt_aV[cmdOff] - (tt_aV[SHADOW] ? tt_aV[SHADOWWIDTH] : 0);
@@ -1058,45 +947,38 @@ function tt_Pos(iDim)
         iX = bJmpMod ? tt_PosDef(iDim) : iScrl;
     return iX;
 }
-function tt_PosDef(iDim)
-{
+function tt_PosDef(iDim) {
     if (iDim)
         tt_bJmpVert = tt_aV[ABOVE];
     else
         tt_bJmpHorz = tt_aV[LEFT];
     return tt_CalcPosDef(iDim);
 }
-function tt_PosAlt(iDim)
-{
+function tt_PosAlt(iDim) {
     if (iDim)
         tt_bJmpVert = !tt_aV[ABOVE];
     else
         tt_bJmpHorz = !tt_aV[LEFT];
     return tt_CalcPosAlt(iDim);
 }
-function tt_CalcPosDef(iDim)
-{
+function tt_CalcPosDef(iDim) {
     return iDim ? (tt_musY + tt_aV[OFFSETY]) : (tt_musX + tt_aV[OFFSETX]);
 }
-function tt_CalcPosAlt(iDim)
-{
+function tt_CalcPosAlt(iDim) {
     var cmdOff = iDim ? OFFSETY : OFFSETX;
     var dx = tt_aV[cmdOff] - (tt_aV[SHADOW] ? tt_aV[SHADOWWIDTH] : 0);
     if (tt_aV[cmdOff] > 0 && dx <= 0)
         dx = 1;
-    return((iDim ? (tt_musY - tt_h) : (tt_musX - tt_w)) - dx);
+    return ((iDim ? (tt_musY - tt_h) : (tt_musX - tt_w)) - dx);
 }
-function tt_PosFix()
-{
+function tt_PosFix() {
     var iX, iY;
 
-    if (typeof (tt_aV[FIX][0]) == "number")
-    {
+    if (typeof (tt_aV[FIX][0]) == "number") {
         iX = tt_aV[FIX][0];
         iY = tt_aV[FIX][1];
     }
-    else
-    {
+    else {
         if (typeof (tt_aV[FIX][0]) == "string")
             el = tt_GetElt(tt_aV[FIX][0]);
         // First slot in array is direct reference to HTML element
@@ -1107,8 +989,7 @@ function tt_PosFix()
         // By default, vert pos is related to bottom edge of HTML element
         if (!tt_aV[ABOVE] && el)
             iY += tt_GetDivH(el);
-        for (; el; el = el.offsetParent)
-        {
+        for (; el; el = el.offsetParent) {
             iX += el.offsetLeft || 0;
             iY += el.offsetTop || 0;
         }
@@ -1119,54 +1000,46 @@ function tt_PosFix()
         iY -= tt_h;
     tt_SetTipPos(iX, iY);
 }
-function tt_Fade(a, now, z, n)
-{
-    if (n)
-    {
+function tt_Fade(a, now, z, n) {
+    if (n) {
         now += Math.round((z - now) / n);
         if ((z > a) ? (now >= z) : (now <= z))
             now = z;
         else
             tt_tFade.Timer(
-                    "tt_Fade("
-                    + a + "," + now + "," + z + "," + (n - 1)
-                    + ")",
-                    tt_aV[FADEINTERVAL],
-                    true
-                    );
+                "tt_Fade("
+                + a + "," + now + "," + z + "," + (n - 1)
+                + ")",
+                tt_aV[FADEINTERVAL],
+                true
+            );
     }
     now ? tt_SetTipOpa(now) : tt_Hide();
 }
-function tt_SetTipOpa(opa)
-{
+function tt_SetTipOpa(opa) {
     // To circumvent the opacity nesting flaws of IE, we set the opacity
     // for each sub-DIV separately, rather than for the container DIV.
     tt_SetOpa(tt_aElt[5], opa);
     if (tt_aElt[1])
         tt_SetOpa(tt_aElt[1], opa);
-    if (tt_aV[SHADOW])
-    {
+    if (tt_aV[SHADOW]) {
         opa = Math.round(opa * 0.8);
         tt_SetOpa(tt_aElt[7], opa);
         tt_SetOpa(tt_aElt[8], opa);
     }
 }
-function tt_OnCloseBtnOver(iOver)
-{
+function tt_OnCloseBtnOver(iOver) {
     var css = tt_aElt[4].style;
 
     iOver <<= 1;
     css.background = tt_aV[CLOSEBTNCOLORS][iOver];
     css.color = tt_aV[CLOSEBTNCOLORS][iOver + 1];
 }
-function tt_OnLClick(e)
-{
+function tt_OnLClick(e) {
     //  Ignore right-clicks
     e = e || window.event;
-    if (!((e.button && e.button & 2) || (e.which && e.which == 3)))
-    {
-        if (tt_aV[CLICKSTICKY] && (tt_iState & 0x4))
-        {
+    if (!((e.button && e.button & 2) || (e.which && e.which == 3))) {
+        if (tt_aV[CLICKSTICKY] && (tt_iState & 0x4)) {
             tt_aV[STICKY] = true;
             tt_iState &= ~0x4;
         }
@@ -1174,135 +1047,118 @@ function tt_OnLClick(e)
             tt_HideInit();
     }
 }
-function tt_Int(x)
-{
+function tt_Int(x) {
     var y;
 
-    return(isNaN(y = parseInt(x)) ? 0 : y);
+    return (isNaN(y = parseInt(x)) ? 0 : y);
 }
-Number.prototype.Timer = function (s, iT, bUrge)
-{
+Number.prototype.Timer = function (s, iT, bUrge) {
     if (!this.value || bUrge)
         this.value = window.setTimeout(s, iT);
 }
-Number.prototype.EndTimer = function ()
-{
-    if (this.value)
-    {
+Number.prototype.EndTimer = function () {
+    if (this.value) {
         window.clearTimeout(this.value);
         this.value = 0;
     }
 }
-function tt_GetWndCliSiz(s)
-{
+function tt_GetWndCliSiz(s) {
     var db, y = window["inner" + s], sC = "client" + s, sN = "number";
-    if (typeof y == sN)
-    {
+    if (typeof y == sN) {
         var y2;
-        return(
-                // Gecko or Opera with scrollbar
-                        // ... quirks mode
-                                ((db = document.body) && typeof (y2 = db[sC]) == sN && y2 && y2 <= y) ? y2
-                                // ... strict mode
-                                : ((db = document.documentElement) && typeof (y2 = db[sC]) == sN && y2 && y2 <= y) ? y2
-                                // No scrollbar, or clientarea size == 0, or other browser (KHTML etc.)
-                                : y
-                                );
-            }
-            // IE
-            return(
-                    // document.documentElement.client+s functional, returns > 0
-                            ((db = document.documentElement) && (y = db[sC])) ? y
-                            // ... not functional, in which case document.body.client+s 
-                            // is the clientarea size, fortunately
-                            : document.body[sC]
-                            );
-        }
-        function tt_SetOpa(el, opa)
-        {
-            var css = el.style;
+        return (
+            // Gecko or Opera with scrollbar
+            // ... quirks mode
+            ((db = document.body) && typeof (y2 = db[sC]) == sN && y2 && y2 <= y) ? y2
+                // ... strict mode
+                : ((db = document.documentElement) && typeof (y2 = db[sC]) == sN && y2 && y2 <= y) ? y2
+                // No scrollbar, or clientarea size == 0, or other browser (KHTML etc.)
+                : y
+        );
+    }
+    // IE
+    return (
+        // document.documentElement.client+s functional, returns > 0
+        ((db = document.documentElement) && (y = db[sC])) ? y
+            // ... not functional, in which case document.body.client+s
+            // is the clientarea size, fortunately
+            : document.body[sC]
+    );
+}
+function tt_SetOpa(el, opa) {
+    var css = el.style;
 
-            tt_opa = opa;
-            if (tt_flagOpa == 1)
-            {
-                if (opa < 100)
-                {
-                    // Hacks for bugs of IE:
-                    // 1.) Once a CSS filter has been applied, fonts are no longer
-                    // anti-aliased, so we store the previous 'non-filter' to be
-                    // able to restore it
-                    if (typeof (el.filtNo) == tt_u)
-                        el.filtNo = css.filter;
-                    // 2.) A DIV cannot be made visible in a single step if an
-                    // opacity < 100 has been applied while the DIV was hidden
-                    var bVis = css.visibility != "hidden";
-                    // 3.) In IE6, applying an opacity < 100 has no effect if the
-                    //	   element has no layout (position, size, zoom, ...)
-                    css.zoom = "100%";
-                    if (!bVis)
-                        css.visibility = "visible";
-                    css.filter = "alpha(opacity=" + opa + ")";
-                    if (!bVis)
-                        css.visibility = "hidden";
-                }
-                else if (typeof (el.filtNo) != tt_u)
-                    // Restore 'non-filter'
-                    css.filter = el.filtNo;
-            }
-            else
-            {
-                opa /= 100.0;
-                switch (tt_flagOpa)
-                {
-                    case 2:
-                        css.KhtmlOpacity = opa;
-                        break;
-                    case 3:
-                        css.KHTMLOpacity = opa;
-                        break;
-                    case 4:
-                        css.MozOpacity = opa;
-                        break;
-                    case 5:
-                        css.opacity = opa;
-                        break;
-                }
-            }
+    tt_opa = opa;
+    if (tt_flagOpa == 1) {
+        if (opa < 100) {
+            // Hacks for bugs of IE:
+            // 1.) Once a CSS filter has been applied, fonts are no longer
+            // anti-aliased, so we store the previous 'non-filter' to be
+            // able to restore it
+            if (typeof (el.filtNo) == tt_u)
+                el.filtNo = css.filter;
+            // 2.) A DIV cannot be made visible in a single step if an
+            // opacity < 100 has been applied while the DIV was hidden
+            var bVis = css.visibility != "hidden";
+            // 3.) In IE6, applying an opacity < 100 has no effect if the
+            //	   element has no layout (position, size, zoom, ...)
+            css.zoom = "100%";
+            if (!bVis)
+                css.visibility = "visible";
+            css.filter = "alpha(opacity=" + opa + ")";
+            if (!bVis)
+                css.visibility = "hidden";
         }
-        function tt_Err(sErr, bIfDebug)
-        {
-            if (tt_Debug || !bIfDebug)
-                alert("Tooltip Script Error Message:\n\n" + sErr);
+        else if (typeof (el.filtNo) != tt_u)
+        // Restore 'non-filter'
+            css.filter = el.filtNo;
+    }
+    else {
+        opa /= 100.0;
+        switch (tt_flagOpa) {
+            case 2:
+                css.KhtmlOpacity = opa;
+                break;
+            case 3:
+                css.KHTMLOpacity = opa;
+                break;
+            case 4:
+                css.MozOpacity = opa;
+                break;
+            case 5:
+                css.opacity = opa;
+                break;
         }
+    }
+}
+function tt_Err(sErr, bIfDebug) {
+    if (tt_Debug || !bIfDebug)
+        alert("Tooltip Script Error Message:\n\n" + sErr);
+}
 
 //============  EXTENSION (PLUGIN) MANAGER  ===============//
-        function tt_ExtCmdEnum()
-        {
-            var s;
+function tt_ExtCmdEnum() {
+    var s;
 
-            // Add new command(s) to the commands enum
-            for (var i in config)
-            {
-                s = "window." + i.toString().toUpperCase();
-                if (eval("typeof(" + s + ") == tt_u"))
-                {
-                    eval(s + " = " + tt_aV.length);
-                    tt_aV[tt_aV.length] = null;
-                }
-            }
+    // Add new command(s) to the commands enum
+    for (var i in config) {
+        s = "window." + i.toString().toUpperCase();
+        if (eval("typeof(" + s + ") == tt_u")) {
+            eval(s + " = " + tt_aV.length);
+            tt_aV[tt_aV.length] = null;
         }
-        function tt_ExtCallFncs(arg, sFnc)
-        {
-            var b = false;
-            for (var i = tt_aExt.length; i; )
-            {
-                --i;
-                var fnc = tt_aExt[i]["On" + sFnc];
-                // Call the method the extension has defined for this event
-                if (fnc && fnc(arg))
-                    b = true;
-            }
-            return b;
-        }
+    }
+}
+function tt_ExtCallFncs(arg, sFnc) {
+    var b = false;
+    for (var i = tt_aExt.length; i;) {
+        --i;
+        var fnc = tt_aExt[i]["On" + sFnc];
+        // Call the method the extension has defined for this event
+        if (fnc && fnc(arg))
+            b = true;
+    }
+    return b;
+}
 
-        tt_Init();
+tt_Init();
